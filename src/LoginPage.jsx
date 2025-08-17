@@ -57,7 +57,7 @@ function LoginPage() {
 
             {/* FORMULÁRIO */}
             <form className="login-form flex-col flex gap-3 w-1/3 mr-[10%]" onSubmit={sendLoginData}>
-                <input ref={login} className="crimson login-box text-white" name="username" type="text" placeholder="Usuário"/>
+                <input ref={login} className="green-custom login-box text-black" name="username" type="text" placeholder="Usuário"/>
                 <input ref={password} className="bg-white password-box" name="password" type="password" placeholder="Senha"/>
                 <input type="submit" className="submit" value="LOGIN" name="submit"/>
             </form>
@@ -74,12 +74,12 @@ function LoginPage() {
                 {/* CÍRCULOS */}
                 <div
                     ref={el => circlesRef.current[1] = el}
-                    className="circle grey w-[5vw] h-[5vw] absolute left-4/9 top-1/9"
+                    className="circle green-custom w-[5vw] h-[5vw] absolute left-4/9 top-1/9"
                 ></div>
 
                 <div
                     ref={el => circlesRef.current[2] = el}
-                    className="circle crimson w-[5vw] h-[5vw] absolute left-2/8 top-1/9"
+                    className="circle green-custom w-[5vw] h-[5vw] absolute left-2/8 top-1/9"
                 ></div>
 
                 <img
@@ -90,7 +90,7 @@ function LoginPage() {
 
                 <div
                     ref={el => circlesRef.current[3] = el}
-                    className="circle crimson w-[10vw] h-[10vw] absolute left-3/7 top-4/6"
+                    className="circle green-custom w-[10vw] h-[10vw] absolute left-3/7 top-4/6"
                 ></div>
             </div>
 

@@ -4,7 +4,6 @@
 body {
     background: url("../images/background.svg") no-repeat center center;
     background-size: auto 160%;
-
 }
 
 
@@ -28,18 +27,19 @@ input:focus {
 .password-box {
     background: url("../images/elements/password.svg") no-repeat center center;
     background-size: auto 130%;
+    filter:invert(1) brightness(170%);
 }
 
 .submit {
     padding: 5% !important;
     width: 40%;
     color: white;
-    background-color: #FE5375;
+    background-color: #01AC8A;
     margin-left: 60%;
     border-radius: 4em !important;
 }
 
 .submit:hover {
     background-color: #ffffff;
-    color: #FE5375;
+    color: #01AC8A;
 }
