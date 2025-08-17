@@ -10,6 +10,8 @@ function LoginPage() {
     const circlesRef = useRef([]); // array de refs
     const anglesRef = useRef([]);  // array para os ângulos
 
+
+    // Animação dos círculos e do background
     useEffect(() => {
         let frameId;
 
@@ -35,13 +37,28 @@ function LoginPage() {
         return () => cancelAnimationFrame(frameId);
     }, []);
 
+
+    // Função de submit e derivados
+    const login = useRef(null);
+    const password = useRef(null);
+    async function sendLoginData(e){
+        e.preventDefault();
+        await fetch('http://127.0.0.1:5000/auth/login', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({username: login.current.value, password: password.current.value})
+        })
+        .then(res => res.json())
+        .then(data => {console.log(data)})
+        .catch(err => console.error(err));
+    }
     return (
         <main className="login-page flex w-screen h-screen flex-row-reverse justify-center items-center">
 
             {/* FORMULÁRIO */}
-            <form className="login-form flex-col flex gap-3 w-1/3 mr-[10%]">
-                <input className="crimson login-box text-white" name="username" type="text" placeholder="Usuário"/>
-                <input className="bg-white password-box" name="password" type="password" placeholder="Senha"/>
+            <form className="login-form flex-col flex gap-3 w-1/3 mr-[10%]" onSubmit={sendLoginData}>
+                <input ref={login} className="crimson login-box text-white" name="username" type="text" placeholder="Usuário"/>
+                <input ref={password} className="bg-white password-box" name="password" type="password" placeholder="Senha"/>
                 <input type="submit" className="submit" value="LOGIN" name="submit"/>
             </form>
 
