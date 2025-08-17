@@ -1,0 +1,31 @@
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Fontes */
+.lato {
+   font-family: 'Lato', sans-serif;
+ }
+
+
+/* Cores */
+
+.crimson {
+  background-color: #FE5375;
+}
+.grey {
+    background-color: #AFAFAF;
+}
+.dark-grey {
+    background-color: #616161;
+}
+
+/* Formas geométricas */
+
+.circle {
+  border-radius: 50%;
+}
