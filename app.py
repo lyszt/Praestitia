@@ -5,6 +5,9 @@ import unidecode
 from email_validator import validate_email
 from flask import Flask, request, redirect, jsonify
 from flask_cors import CORS
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+
 from models import initialize, User, database
 from passlib.hash import argon2
 from typing import *
