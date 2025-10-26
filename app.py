@@ -73,7 +73,7 @@ def register():
         return jsonify({"status": 400, "body": "Dados inválidos. Email inválido."}), 400
 
 
-    if user.get_or_none(User.username == username) is not None:
+    if User.get_or_none(User.username == username) is not None:
         return jsonify({"status": 401, "body": "Usuário já existe."}), 401
     else:
         new_user = User.create(username=username, email=email, password=password)
