@@ -2,7 +2,7 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Python" name="Python facet">
-      <configuration sdkName="Python 3.13 virtualenv at ~/PycharmProjects/Praestitia/.venv" />
+      <configuration sdkName="Python 3.13 (Praestitia)" />
     </facet>
   </component>
   <component name="Flask">
@@ -14,7 +14,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Python 3.13 (Praestitia)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Python 3.13 virtualenv at ~/PycharmProjects/Praestitia/.venv interpreter library" level="application" />
+    <orderEntry type="library" name="Python 3.13 (Praestitia) interpreter library" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />

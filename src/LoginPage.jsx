@@ -4,6 +4,7 @@ import CircleShadow from "./assets/images/forms/circle-shadow.svg"
 // CSS
 import './assets/css/LoginPage.css'
 import './App.css'
+import axios from 'axios';
 
 function LoginPage() {
 
@@ -43,14 +44,42 @@ function LoginPage() {
     const password = useRef(null);
     async function sendLoginData(e){
         e.preventDefault();
-        await fetch('http://127.0.0.1:5000/auth/login', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({username: login.current.value, password: password.current.value})
-        })
-        .then(res => res.json())
-        .then(data => {console.log(data)})
-        .catch(err => console.error(err));
+        const payload = {
+            username: login.current?.value || '',
+            password: password.current?.value || ''
+        }
+
+        try {
+            const response = await axios.post("http://127.0.0.1:5000/auth/login", payload, {
+                headers: {'Content-Type': 'application/json'}
+            });
+
+            const data = response.data || {};
+            const token = data.token || null;
+
+            if (token) {
+                console.log(token);
+                localStorage.setItem('token_acesso', token);
+                // redireciona para /dashboard
+                window.location.assign('/dashboard');
+                return;
+            }
+
+            // Caso contrário, mostra mensagem de erro genérica
+            console.error('Falha no login: resposta inesperada', data);
+            alert('Falha no login: resposta inesperada do servidor.');
+        } catch (err) {
+            if (err.response) {
+                console.error('Erro do servidor:', err.response.status, err.response.data);
+                const serverMsg = err.response.data?.message || err.response.data || 'Erro no servidor.';
+                alert(`Erro ao entrar: ${serverMsg}`);
+            }
+            else {
+                console.error('Erro ao preparar a requisição:', err.message);
+                alert('Erro ao enviar dados de login.');
+            }
+        }
+
     }
     return (
         <main className="login-page flex w-screen h-screen flex-row-reverse justify-center items-center">
