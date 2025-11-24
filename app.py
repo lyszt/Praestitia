@@ -3,11 +3,14 @@ import os
 import email_validator.exceptions
 import unidecode
 from email_validator import validate_email
-from flask import Flask, request, redirect, jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
-from models import initialize, User, database
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from passlib.hash import argon2
-from typing import *
+
+from models import initialize, User
+
 initialize([User])
 
 app = Flask(__name__)
@@ -33,7 +36,7 @@ def login():
         return jsonify({"status": 400, "body": "Dados inválidos. Campos não podem estar vazios."}), 400
 
     # print("Received:", username, password)
-    user = user.get_or_none(User.username == username)
+    user = User.get_or_none(User.username == username)
 
     if user is not None:
         if argon2.verify(password, user.password) :
@@ -73,7 +76,7 @@ def register():
         return jsonify({"status": 400, "body": "Dados inválidos. Email inválido."}), 400
 
 
-    if user.get_or_none(User.username == username) is not None:
+    if User.get_or_none(User.username == username) is not None:
         return jsonify({"status": 401, "body": "Usuário já existe."}), 401
     else:
         new_user = User.create(username=username, email=email, password=password)
