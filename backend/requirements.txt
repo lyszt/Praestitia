@@ -1,0 +1,7 @@
+django-ninja
+django
+email-validator
+unidecode
+passlib
+argon2-cffi
+django-ratelimit

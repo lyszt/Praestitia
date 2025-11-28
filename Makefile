@@ -1,4 +1,9 @@
- .PHONY: runserver frontend dev help
+ .PHONY: runserver frontend dev help 
+
+all:
+	@cd praestitia && npm i
+	@cd backend && pip install -r requirements.txt
+
 
 help:
 	@echo "Makefile targets:"
@@ -19,6 +24,5 @@ frontend:
 
 dev:
 	@echo "Starting frontend and backend in parallel..."
-	@bash -c "cd praestitia && npm run dev" & \
-	@bash -c "cd backend && source venv/bin/activate && python manage.py runserver 0.0.0.0:8000" & \
-	wait
+	@echo "Running root npm dev (uses concurrently to start both services)"
+	@npm run dev

@@ -1,0 +1,18 @@
+{
+  "name": "praestitia",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix praestitia\" \"sh -c 'cd backend && if [ ! -d venv ]; then python -m venv venv; fi && ./venv/bin/pip install -r requirements.txt && ./venv/bin/python manage.py runserver 0.0.0.0:8000'\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.0"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "add": "^2.0.6",
+    "button": "^1.1.1",
+    "solidui-cli": "^0.7.1"
+  }
+}
