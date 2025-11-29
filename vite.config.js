@@ -2,9 +2,7 @@ import { defineConfig } from "vite";
 import solid from "vite-plugin-solid";
 import tailwindcss from "@tailwindcss/vite";
 import viteCompression from "vite-plugin-compression";
-import viteImagemin from "vite-plugin-imagemin";
-import { visualizer } from "rollup-plugin-visualizer";
-import { terser } from "rollup-plugin-terser";
+import terser from "@rollup/plugin-terser";
 
 export default defineConfig({
   plugins: [
@@ -15,32 +13,26 @@ export default defineConfig({
     viteCompression({
       algorithm: "gzip",
       ext: ".gz",
-      threshold: 10240, // only compress files > 10kb
+      threshold: 10240, 
       deleteOriginFile: false,
     }),
 
-    // Image optimization for production builds
-    viteImagemin({
-      gifsicle: {
-        optimizationLevel: 7,
-        interlaced: false,
-      },
-      mozjpeg: {
-        quality: 75,
-      },
-      pngquant: {
-        quality: [0.7, 0.9],
-        speed: 3,
-      },
-      svgo: {
-        plugins: [
-          { name: "removeViewBox", active: false },
-          { name: "removeEmptyAttrs", active: false },
-        ],
-      },
-    }),
   ],
 
+  esbuild: {
+    jsx: "preserve",
+    jsxImportSource: "solid-js",
+  },
+  resolve: {
+    alias: [
+      { find: 'react/jsx-runtime', replacement: 'solid-js/jsx-runtime' },
+      { find: 'react/jsx-dev-runtime', replacement: 'solid-js/jsx-dev-runtime' }
+    ]
+  },
+  optimizeDeps: {
+    include: ["solid-js", "solid-js/web"]
+  },
+  
   build: {
     minify: "terser",
     rollupOptions: {

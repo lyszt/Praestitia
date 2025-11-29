@@ -1,7 +1,7 @@
  .PHONY: runserver frontend dev help 
 
 all:
-	@cd praestitia && npm i
+	@npm i
 	@cd backend && pip install -r requirements.txt
 
 
@@ -19,8 +19,8 @@ runserver:
 	@cd backend && bash -lc "source venv/bin/activate && python manage.py runserver 0.0.0.0:8000"
 
 frontend:
-	@echo "Starting frontend (npm run dev) in ./praestitia..."
-	@cd praestitia && npm run dev
+	@echo "Starting frontend (npm run dev) in project root..."
+	@npm run dev
 
 dev:
 	@echo "Starting frontend and backend in parallel..."
