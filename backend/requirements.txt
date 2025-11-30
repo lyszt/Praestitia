@@ -4,4 +4,9 @@ email-validator
 unidecode
 passlib
 argon2-cffi
+python-dotenv
+django-cors-headers
+unidecode
+passlib
+argon2-cffi
 django-ratelimit

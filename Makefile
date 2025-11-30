@@ -1,8 +1,14 @@
- .PHONY: runserver frontend dev help 
+.PHONY: runserver frontend dev help 
 
-all:
+PORT ?= 5000
+
+all: install-frontend install-backend
+
+install-frontend:
 	@npm i
-	@cd backend && pip install -r requirements.txt
+
+install-backend:
+	@cd backend && if [ ! -d venv ]; then python -m venv venv; fi && bash -lc "source venv/bin/activate && pip install -r requirements.txt"
 
 
 help:
@@ -16,7 +22,7 @@ runserver:
 	@if [ ! -d backend/venv ]; then \
 		cd backend && python -m venv venv; \
 	fi
-	@cd backend && bash -lc "source venv/bin/activate && python manage.py runserver 0.0.0.0:8000"
+	@cd backend && bash -lc "source venv/bin/activate && python manage.py runserver 127.0.0.1:$(PORT)"
 
 frontend:
 	@echo "Starting frontend (npm run dev) in project root..."
@@ -26,3 +32,13 @@ dev:
 	@echo "Starting frontend and backend in parallel..."
 	@echo "Running root npm dev (uses concurrently to start both services)"
 	@npm run dev
+
+makemigrations:
+	@echo "Creating backend Django migrations..."
+	@if [ ! -d backend/venv ]; then cd backend && python -m venv venv; fi
+	@cd backend && bash -lc "source venv/bin/activate && python manage.py makemigrations --noinput"
+
+migrate:
+	@echo "Applying backend Django migrations..."
+	@if [ ! -d backend/venv ]; then cd backend && python -m venv venv; fi
+	@cd backend && bash -lc "source venv/bin/activate && python manage.py migrate"

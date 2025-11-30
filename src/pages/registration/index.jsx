@@ -1,0 +1,127 @@
+import React, { useState, useRef, useEffect } from 'react'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import FlareOutlinedIcon from '@mui/icons-material/FlareOutlined';
+
+import { sendRegisterData } from './utils'
+
+export default function RegisterScreen({showRegister, setShowRegister}) {
+
+	const [username, setUsername] = useState('')
+	const [password, setPassword] = useState('')
+	const [email, setEmail] = useState('')
+	const [errorMessage, setErrorMessage] = useState('')
+
+	async function handleSubmit(e) {
+		e.preventDefault()
+		setErrorMessage('')
+		const res = await sendRegisterData(username, password, email)
+		if (!res?.success) {
+			setErrorMessage(res?.message)
+			return res
+		}
+		if (res?.token) {
+			localStorage.setItem('token_acesso', res.token)
+			window.location.assign('/dashboard')
+		}
+		return res
+	}
+
+
+	function closeRegisterScreen() {
+		setShowRegister(false)
+	}
+
+
+	return (
+		<main className="login-page flex bg-black w-screen h-screen flex-row justify-center items-center">
+            <div className="w-[60%] h-[70%] flex
+			 flex-row items-center 
+			justify-center
+			bg-gradient-to-r 
+			from-zinc-950
+			to-black
+			border
+			border-zinc-900
+			text-zinc-200 rounded-xl">
+				<div className="w-1/2 
+				bg-emerald-700
+				 h-full
+				 items-start
+				 gap-2
+				 justify-center
+				 flex flex-col
+				p-10">
+
+					<h2 className="text-2xl font-bold">Potencialize sua gestão</h2>
+					<br/>
+					<p className="text-sm">
+						O Praestitia reúne em um único ambiente os 
+						recursos essenciais para organizar, acompanhar e 
+						otimizar cada etapa da sua operação. Ao acessar sua conta, 
+						você encontra ferramentas que fortalecem a tomada de decisão,
+						agilizam rotinas e ampliam a eficiência do seu trabalho. 
+						Conecte-se para aproveitar uma gestão mais integrada, segura e inteligente.
+					</p>
+					<br/>
+					
+				</div>
+				<form className="flex-col 
+					flex w-1/2 justify-center
+					h-full
+					items-left p-10" onSubmit={handleSubmit}>
+					<span className="text-xl font-bold">Acesse sua conta</span>
+					<TextField
+						label="Usuário"
+						value={username}
+						onChange={(e) => { setUsername(e.target.value); setErrorMessage('') }}
+						style={{ fontSize: '1em' }}
+						margin="normal"
+						variant="outlined"
+					/>
+					<TextField
+						label="E-mail"
+						value={email}
+						onChange={(e) => { setEmail(e.target.value); setErrorMessage('') }}
+						type="email"
+						style={{ fontSize: '1em' }}
+						margin="normal"
+						variant="outlined"
+					/>
+					<TextField
+						label="Senha"
+						value={password}
+						onChange={(e) => { setPassword(e.target.value); setErrorMessage('') }}
+						type="password"
+						style={{ fontSize: '1em' }}
+						margin="normal"
+						variant="outlined"
+					/>
+					<div className='flex items-center justify-center gap-1 mt-3'>
+						<Button 
+						variant="contained" 
+						color="primary" 
+						className="rounded-md p-2 w-1/3"
+						type="submit"
+						startIcon={<FlareOutlinedIcon/>}>
+							Prosseguir
+						</Button>
+
+						<Button variant="contained" 
+						color="primary" 
+						className="rounded-md p-2" 
+						onClick={closeRegisterScreen}
+						>
+								Voltar
+						</Button>
+
+						
+					</div>
+					{errorMessage && <span className="text-sm mt-4 text-red-400 font-medium">{errorMessage}</span>}
+
+				</form>
+            </div>
+
+		</main>
+	)
+}

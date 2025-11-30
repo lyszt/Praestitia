@@ -1,0 +1,12 @@
+
+/* Font families */
+.lato { font-family: 'Lato', sans-serif; }
+
+/* Colors */
+.green-custom { background-color: #007F65; }
+.grey { background-color: #AFAFAF; }
+.dark-grey { background-color: #616161; }
+
+/* Geometric shapes */
+.circle { border-radius: 50%; }
+

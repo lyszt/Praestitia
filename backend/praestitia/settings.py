@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os 
-import dotenv 
+import dotenv
 
 env = dotenv.load_dotenv(dotenv.find_dotenv())
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,12 +30,13 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -130,12 +132,53 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Use Argon2 for password hashing when available
+"""
+Use o Argon2 como o ÚNICO algoritmo de hash de senhas para garantir o algoritmo
+de hash mais forte disponível. Isso evita que algoritmos mais fracos sejam usados
+como alternativa.
+
+OBSERVAÇÃO: Aumentar os parâmetros do Argon2 (time_cost, memory_cost, parallelism)
+melhora a segurança, mas também aumenta o uso de CPU/memória durante o hash.
+Ajuste esses valores caso máquinas de desenvolvimento ou serviços de CI tenham dificuldades.
+"""
+
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
 ]
 
-# Use the custom user model implemented in `accounts` app
+ARGON2_PARAMETERS = {
+    'time_cost': 4,      # number of iterations
+    'memory_cost': 65536, # memory usage in kibibytes (64 MiB)
+    'parallelism': 4,    # number of parallel threads
+}
+
 AUTH_USER_MODEL = 'accounts.User'
+
+# CORS settings - allow dev frontend origin(s)
+if DEBUG:
+    # permite todas as origens durante o desenvolvimento
+    CORS_ALLOW_ALL_ORIGINS = True
+    CORS_ALLOW_CREDENTIALS = True
+
+    CSRF_TRUSTED_ORIGINS = [
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+    ]
+else:
+    CORS_ALLOWED_ORIGINS = [
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+    ]
+    CORS_ALLOW_CREDENTIALS = True
+
+    # Somente HTTPS
+    SECURE_SSL_REDIRECT = True
+    
+    # Cookies só são enviados via HTTPS
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    
+    # HSTS: Diga aos navegadores para RECUSAR conexões não criptografadas pelo próximo ano
+    SECURE_HSTS_SECONDS = 31536000 
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
