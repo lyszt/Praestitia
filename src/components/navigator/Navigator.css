@@ -1,0 +1,22 @@
+/* HOVER ATTRIBUTES */
+
+button:hover * {
+    color: var(--praestitia-primary) !important;
+}
+button:hover svg {
+    fill: var(--praestitia-primary) !important;
+}
+
+/* ACTIVE/CLICK ATTRIBUTES */
+
+button:active {
+    background-color: #e5e7eb !important; /* light gray matching nav */
+}
+
+.menu button:active {
+    background-color: #d1d5db !important; /* slightly darker gray for sidebar */
+}
+
+.btn-ghost:active {
+    background-color: #e5e7eb !important;
+}

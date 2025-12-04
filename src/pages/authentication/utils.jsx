@@ -1,7 +1,9 @@
+import { getApiBaseUrl, setToken } from '../../utils/api'
+
 async function sendLoginData(username, password) {
 	const payload = { username: username || '', password: password || '' }
 		try {
-			const res = await fetch('http://127.0.0.1:5000/auth/login/', {
+			const res = await fetch(`${getApiBaseUrl()}/auth/login/`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(payload)
@@ -15,7 +17,10 @@ async function sendLoginData(username, password) {
 				return { success: false, status: res.status, message: String(serverMsg) }
 			}
 			const token = data?.token || null
-			return { success: true, token }
+			if (token) {
+				setToken(token)
+			}
+			return { success: true, token, username: data?.username }
 		} catch (err) {
 			console.error('Erro de rede:', err)
 			return { success: false, message: 'Estamos tendo dificuldades. Falha na conexão.' }

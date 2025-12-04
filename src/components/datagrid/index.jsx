@@ -1,0 +1,25 @@
+import { DataGrid } from "@mui/x-data-grid";
+import Paper from "@mui/material/Paper";
+
+export default function DataTable({
+  rows,
+  columns,
+  paginationModel,
+  emptyText
+}) {
+  return (
+    <Paper sx={{ height: 400, width: "100%", position: "relative", zIndex: 1 }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        initialState={{ pagination: { paginationModel } }}
+        pageSizeOptions={[5, 10]}
+        checkboxSelection
+        sx={{ border: 0 }}
+        localeText={{
+          noRowsLabel: emptyText
+        }}
+      />
+    </Paper>
+  );
+}

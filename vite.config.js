@@ -9,10 +9,24 @@ export default defineConfig({
 
   ],
 
-  
+  server: {
+    // NÃO MUDAR!
+    port: 5173,
+  },
+
   build: {
     minify: "esbuild",
     chunkSizeWarningLimit: 600,
+  },
+
+  optimizeDeps: {
+    rolldownOptions: {},
+  },
+
+  ssr: {
+    optimizeDeps: {
+      rolldownOptions: {},
+    },
   },
 
 });

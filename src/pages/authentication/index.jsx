@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import LoginForm from "./login"
 import RegisterScreen from "../registration"
 
-export default function AuthenticationPage() {
+export default function AuthenticationPage({setAuth}) {
 	
 	
 	const [showRegister, setShowRegister] = useState(false)
@@ -16,9 +16,9 @@ export default function AuthenticationPage() {
 		<main className="login-page flex bg-black w-screen h-screen flex-row justify-center items-center">
             
 			{showRegister ? (
-				<RegisterScreen setShowRegister={setShowRegister} showRegister={showRegister}/>	
+				<RegisterScreen setShowRegister={setShowRegister} showRegister={showRegister} setAuth={setAuth}/>	
 			) : (
-				<LoginForm setShowRegister={setShowRegister} showRegister={showRegister}/>
+				<LoginForm setShowRegister={setShowRegister} showRegister={showRegister} setAuth={setAuth}/>
 			)
 			}
 		</main>

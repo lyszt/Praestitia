@@ -1,0 +1,74 @@
+import { useState, useEffect } from "react";
+import { authenticatedFetch } from "../../../utils/api";
+import Datagrid from "../../../components/datagrid";
+import TrendingUp from '@mui/icons-material/TrendingUp';
+
+const Leads = () => {
+  const [leads, setLeads] = useState([]);
+  const [leadsLength, setLeadsLength] = useState(0);
+  const [leadRefresh, setLeadRefresh] = useState(0);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await authenticatedFetch("/api/leads");
+        if (response.ok) {
+          const data = await response.json();
+          if (data.leads) {
+            setLeads(data.leads);
+            setLeadsLength(data.leads.length);
+          }
+        } else {
+          console.error("Falha ao buscar leads: status", response.status);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar leads:", error);
+      }
+    })();
+  }, [leadRefresh]);
+
+  const currentPaginationModel = { page: 0, pageSize: leadsLength || 5 };
+  const leadColumns = [
+    { field: "id", headerName: "ID", width: 70, minWidth: 50 },
+    { field: "nome", headerName: "Nome do Lead", width: 200, minWidth: 150, flex: 1 },
+    { field: "email", headerName: "Email", width: 200, minWidth: 150, flex: 1 },
+    { field: "telefone", headerName: "Telefone", width: 150, minWidth: 100 },
+    { field: "origem", headerName: "Origem", width: 150, minWidth: 100 },
+    { field: "interesse", headerName: "Interesse", width: 200, minWidth: 150, flex: 1 },
+    { field: "status", headerName: "Status", width: 120, minWidth: 100 }
+  ];
+
+  return (
+    <main>
+      <header className="p-5 w-full" style={{ backgroundColor: '#f3f4f6' }}>
+        <h1 className="w-full flex justify-left items-center gap-5">
+          <TrendingUp sx={{ fontSize: 40, color: '#007F65' }} />
+          Leads em Prospecção
+        </h1>
+      </header>
+
+      <section aria-label="Gerenciamento de leads">
+        <div className="flex flex-row">
+          <button
+            onClick={() => console.log('Adicionar lead')}
+            className="flex border-gray-200 border flex-row gap-2 mt-5 ml-5 mb-5 transition duration-100 rounded active:bg-gray-200 p-3 justify-center items-center"
+            style={{ backgroundColor: '#f3f4f6' }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#e5e7eb'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#f3f4f6'}
+          >
+            <span style={{ color: '#007F65', fontSize: '24px' }}>+</span>
+            <span>Adicionar Lead</span>
+          </button>
+        </div>
+        <Datagrid
+          rows={leads}
+          columns={leadColumns}
+          paginationModel={currentPaginationModel}
+          emptyText="Nenhum lead cadastrado ainda"
+        />
+      </section>
+    </main>
+  );
+};
+
+export default Leads;

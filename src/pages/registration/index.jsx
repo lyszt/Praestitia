@@ -5,7 +5,7 @@ import FlareOutlinedIcon from '@mui/icons-material/FlareOutlined';
 
 import { sendRegisterData } from './utils'
 
-export default function RegisterScreen({showRegister, setShowRegister}) {
+export default function RegisterScreen({showRegister, setShowRegister, setAuth}) {
 
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
@@ -21,8 +21,7 @@ export default function RegisterScreen({showRegister, setShowRegister}) {
 			return res
 		}
 		if (res?.token) {
-			localStorage.setItem('token_acesso', res.token)
-			window.location.assign('/dashboard')
+			setAuth(true);
 		}
 		return res
 	}

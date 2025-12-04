@@ -1,13 +1,15 @@
-import os
 import json
 import unidecode
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
+from django.utils import timezone
 from email_validator import validate_email, EmailNotValidError
+from knox.models import AuthToken
 from .models import Group, User
 from django_ratelimit.decorators import ratelimit
+from knox.crypto import hash_token
 
 @csrf_exempt
 @ratelimit(key='ip', rate='5/m', method='POST', block=True)
@@ -29,10 +31,11 @@ def login_view(request):
 
     # Se o usuário existe E a senha bate com o hash salvo no banco
     if user is not None and user.check_password(password):
+        _, token = AuthToken.objects.create(user)
         return JsonResponse({
             'status': 200, 
             'username': user.username, 
-            'token': os.urandom(16).hex()
+            'token': token
         })
     
     return JsonResponse({'status': 401, 'body': 'Credenciais inválidas.'}, status=401)
@@ -90,3 +93,34 @@ def register_view(request):
         return JsonResponse({'status': 401, 'body': 'Erro de integridade (usuário ou email já existe).'}, status=401)
     except Exception:
         return JsonResponse({'status': 500, 'body': 'Erro interno no servidor.'}, status=500)
+
+
+@csrf_exempt
+@require_POST
+def validate_token_view(request):
+    """Valida o token de autenticação enviado no header Authorization."""
+    auth_header = request.headers.get('Authorization')
+    
+    if not auth_header or not auth_header.startswith('Token '):
+        return JsonResponse({'status': 401, 'valid': False, 'body': 'Token não fornecido.'}, status=401)
+    
+    token_key = auth_header.split(' ')[1]
+    
+    try:
+        token = AuthToken.objects.get(token_key=token_key[:8])
+        
+        # Valida se o token não expirou
+        if token.expiry is not None and token.expiry < timezone.now():
+            return JsonResponse({'status': 401, 'valid': False, 'body': 'Token expirado.'}, status=401)
+        
+        user = token.user
+        return JsonResponse({
+            'status': 200,
+            'valid': True,
+            'username': user.username,
+            'email': user.email,
+            'group': user.group.name if user.group else None,
+            'permissions': user.group.permissions if user.group else []
+        })
+    except AuthToken.DoesNotExist:
+        return JsonResponse({'status': 401, 'valid': False, 'body': 'Token inválido.'}, status=401)

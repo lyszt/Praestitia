@@ -1,0 +1,2 @@
+- Keep all comments in portuguese.
+- NEVER change any port configuration or url configuration

@@ -1,7 +1,9 @@
+import { getApiBaseUrl, setToken } from '../../utils/api'
+
 async function sendRegisterData(username, password, email) {
     const payload = { username: username || '', password: password || '', email: email || '' }
     try {
-        const res = await fetch('http://127.0.0.1:5000/auth/register/', {
+        const res = await fetch(`${getApiBaseUrl()}/auth/register/`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
@@ -21,6 +23,9 @@ async function sendRegisterData(username, password, email) {
         }
 
         const token = data?.token || null
+        if (token) {
+            setToken(token)
+        }
         return { success: true, token }
     } catch (err) {
         console.error('Erro de rede:', err)
@@ -28,4 +33,4 @@ async function sendRegisterData(username, password, email) {
     }
 }
 
-    export { sendRegisterData };
+export { sendRegisterData };

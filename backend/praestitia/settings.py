@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os 
 import dotenv
+from datetime import timedelta
 
 env = dotenv.load_dotenv(dotenv.find_dotenv())
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'knox',
     'accounts',
 ]
 
@@ -146,6 +148,8 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
 ]
 
+
+# Isso é uma configuração para o método argon2, que é um dos mais seguros usados para autenticação ultimamente
 ARGON2_PARAMETERS = {
     'time_cost': 4,      # number of iterations
     'memory_cost': 65536, # memory usage in kibibytes (64 MiB)
@@ -153,6 +157,16 @@ ARGON2_PARAMETERS = {
 }
 
 AUTH_USER_MODEL = 'accounts.User'
+
+# Knox settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+}
+
+REST_KNOX = {
+    'TOKEN_TTL': timedelta(hours=10),
+    'AUTO_REFRESH': False,
+}
 
 # CORS settings - allow dev frontend origin(s)
 if DEBUG:

@@ -7,7 +7,7 @@ import FlareOutlinedIcon from '@mui/icons-material/FlareOutlined';
 
 import { sendLoginData } from './utils'
 
-export default function LoginForm({setShowRegister, showRegister}) {
+export default function LoginForm({setShowRegister, showRegister, setAuth}) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 	const [errorMessage, setErrorMessage] = useState('')
@@ -21,8 +21,7 @@ export default function LoginForm({setShowRegister, showRegister}) {
 			return res
 		}
 		if (res?.token) {
-			localStorage.setItem('token_acesso', res.token)
-			window.location.assign('/dashboard')
+			setAuth(true);
 		}
 		return res
 	}
