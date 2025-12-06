@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { authenticatedFetch } from "../../../utils/api";
 import Datagrid from "../../../components/datagrid";
+import AddCliente from "./forms/AddCliente";
 import Person from '@mui/icons-material/Person';
 
 const Clientes = () => {
@@ -39,26 +40,15 @@ const Clientes = () => {
 
   return (
     <main>
-      <header className="p-5 w-full" style={{ backgroundColor: '#f3f4f6' }}>
-        <h1 className="w-full flex justify-left items-center gap-5">
-          <Person sx={{ fontSize: 40, color: '#007F65' }} />
+      <header className="p-5 w-full" style={{ backgroundColor: '#000000' }}>
+        <h1 className="w-full flex justify-left items-center gap-5" style={{ color: 'var(--praestitia-text)' }}>
+          <Person sx={{ fontSize: 40, color: 'var(--praestitia-primary)' }} />
           Clientes Cadastrados
         </h1>
       </header>
 
       <section aria-label="Gerenciamento de clientes">
-        <div className="flex flex-row">
-          <button
-            onClick={() => console.log('Adicionar cliente')}
-            className="flex border-gray-200 border flex-row gap-2 mt-5 ml-5 mb-5 transition duration-100 rounded active:bg-gray-200 p-3 justify-center items-center"
-            style={{ backgroundColor: '#f3f4f6' }}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#e5e7eb'}
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#f3f4f6'}
-          >
-            <span style={{ color: '#007F65', fontSize: '24px' }}>+</span>
-            <span>Adicionar Cliente</span>
-          </button>
-        </div>
+        <AddCliente setClienteRefresh={setClienteRefresh} />
         <Datagrid
           rows={clientes}
           columns={clienteColumns}

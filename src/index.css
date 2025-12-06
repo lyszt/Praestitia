@@ -3,9 +3,71 @@
 @plugin "daisyui";
 
 :root {
-    --praestitia-primary: #007F65;
+    --praestitia-primary: #10B981; /* emerald accent */
+    --praestitia-text: #E6EEF5; /* light text (slate-200) - not pure white */
+    --praestitia-text-secondary: #CBD5E1; /* secondary text (slate-300) */
+    --surface-1: #0f1724; /* slate-900 - page background */
+    --surface-2: #1f2937; /* slate-800 - primary surfaces */
+    --surface-3: #334155; /* slate-700 - cards / interactive panels */
+    --muted: #94A3B8; /* muted text (slate-400) */
 }
 
 body * {
     font-family: 'Lato', sans-serif !important;
+}
+
+body {
+    background: radial-gradient(circle at 10% 10%, var(--surface-2) 0%, var(--surface-1) 40%);
+    color: var(--praestitia-text);
+}
+
+/* Global overrides to prevent any white backgrounds */
+div, section, main, header, footer, article, aside, nav {
+    background-color: transparent !important;
+}
+
+/* Ensure no white backgrounds anywhere */
+html {
+    background-color: var(--surface-1) !important;
+}
+
+#root {
+    background-color: transparent !important;
+    min-height: 100vh;
+}
+
+/* MUI specific overrides for dark mode */
+.MuiPaper-root,
+.MuiCard-root,
+.MuiDialog-paper,
+.MuiPopover-paper,
+.MuiMenu-paper,
+.MuiDrawer-paper,
+.MuiAutocomplete-paper {
+    background-color: var(--surface-2) !important;
+    color: var(--praestitia-text);
+}
+
+.MuiBackdrop-root {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Force input text color in all states */
+input,
+textarea {
+    color: var(--praestitia-text);
+    -webkit-text-fill-color: var(--praestitia-text);
+}
+
+.MuiInputBase-input,
+.MuiOutlinedInput-input {
+    color: var(--praestitia-text);
+    -webkit-text-fill-color: var(--praestitia-text);
+}
+
+/* Override any inline styles */
+[class*="MuiInputBase-input"],
+[class*="MuiOutlinedInput-input"] {
+    color: var(--praestitia-text);
+    -webkit-text-fill-color: var(--praestitia-text);
 }

@@ -40,9 +40,9 @@ const Leads = () => {
 
   return (
     <main>
-      <header className="p-5 w-full" style={{ backgroundColor: '#f3f4f6' }}>
-        <h1 className="w-full flex justify-left items-center gap-5">
-          <TrendingUp sx={{ fontSize: 40, color: '#007F65' }} />
+      <header className="p-5 w-full" style={{ backgroundColor: '#000000' }}>
+        <h1 className="w-full flex justify-left items-center gap-5" style={{ color: 'var(--praestitia-text)' }}>
+          <TrendingUp sx={{ fontSize: 40, color: 'var(--praestitia-primary)' }} />
           Leads em Prospecção
         </h1>
       </header>
@@ -51,12 +51,16 @@ const Leads = () => {
         <div className="flex flex-row">
           <button
             onClick={() => console.log('Adicionar lead')}
-            className="flex border-gray-200 border flex-row gap-2 mt-5 ml-5 mb-5 transition duration-100 rounded active:bg-gray-200 p-3 justify-center items-center"
-            style={{ backgroundColor: '#f3f4f6' }}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#e5e7eb'}
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#f3f4f6'}
+            className="flex border flex-row gap-2 mt-5 ml-5 mb-5 transition duration-100 rounded p-3 justify-center items-center"
+            style={{
+              backgroundColor: 'var(--surface-2)',
+              borderColor: 'var(--surface-3)',
+              color: 'var(--praestitia-text)'
+            }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'var(--surface-3)'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'var(--surface-2)'}
           >
-            <span style={{ color: '#007F65', fontSize: '24px' }}>+</span>
+            <span style={{ color: 'var(--praestitia-primary)', fontSize: '24px' }}>+</span>
             <span>Adicionar Lead</span>
           </button>
         </div>

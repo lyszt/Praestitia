@@ -1,4 +1,3 @@
-/* HOVER ATTRIBUTES */
 
 button:hover * {
     color: var(--praestitia-primary) !important;
@@ -7,16 +6,23 @@ button:hover svg {
     fill: var(--praestitia-primary) !important;
 }
 
-/* ACTIVE/CLICK ATTRIBUTES */
 
 button:active {
-    background-color: #e5e7eb !important; /* light gray matching nav */
+    background-color: var(--surface-2) !important;
 }
 
 .menu button:active {
-    background-color: #d1d5db !important; /* slightly darker gray for sidebar */
+    background-color: var(--surface-3) !important;
 }
 
 .btn-ghost:active {
-    background-color: #e5e7eb !important;
+    background-color: var(--surface-2) !important;
+}
+
+.navbar, .drawer-side, .menu button, .menu span {
+    color: var(--praestitia-text) !important;
+}
+.menu button svg {
+    stroke: var(--praestitia-text) !important;
+    fill: none !important;
 }

@@ -3,10 +3,201 @@
 .lato { font-family: 'Lato', sans-serif; }
 
 /* Colors */
-.green-custom { background-color: #007F65; }
-.grey { background-color: #AFAFAF; }
-.dark-grey { background-color: #616161; }
+.green-custom { background-color: #10B981; }
+.grey { background-color: #334155; }
+.dark-grey { background-color: #1f2937; }
 
 /* Geometric shapes */
 .circle { border-radius: 50%; }
+
+
+
+input,
+textarea,
+select {
+  background-color: var(--surface-2) !important;
+  color: var(--praestitia-text);
+  -webkit-text-fill-color: var(--praestitia-text);
+  border-color: var(--surface-3) !important;
+}
+
+button {
+  background-color: var(--surface-2) !important;
+  color: var(--praestitia-text);
+  border-color: var(--surface-3) !important;
+}
+
+.MuiPaper-root {
+  background-color: var(--surface-2) !important;
+  color: var(--praestitia-text);
+}
+
+.MuiTextField-root input,
+.MuiTextField-root textarea,
+.MuiInputBase-root {
+  background-color: var(--surface-2) !important;
+  color: var(--praestitia-text);
+  -webkit-text-fill-color: var(--praestitia-text);
+}
+
+.MuiInputBase-input {
+  color: var(--praestitia-text);
+  -webkit-text-fill-color: var(--praestitia-text);
+}
+
+.MuiOutlinedInput-input {
+  color: var(--praestitia-text);
+  -webkit-text-fill-color: var(--praestitia-text);
+}
+
+.MuiOutlinedInput-root {
+  background-color: var(--surface-2) !important;
+}
+
+/* Specific fix for filled inputs */
+.MuiOutlinedInput-root input[value] {
+  color: var(--praestitia-text);
+  -webkit-text-fill-color: var(--praestitia-text);
+}
+
+.css-gki6e3-MuiInputBase-input-MuiOutlinedInput-input,
+.MuiInputBase-input.MuiOutlinedInput-input {
+  color: var(--praestitia-text);
+  -webkit-text-fill-color: var(--praestitia-text);
+}
+
+/* Ensure autofill doesn't change text color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--praestitia-text) !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--surface-2) inset !important;
+  box-shadow: 0 0 0 1000px var(--surface-2) inset !important;
+  background-color: var(--surface-2) !important;
+  color: var(--praestitia-text) !important;
+}
+
+.MuiInputLabel-root {
+  color: #CBD5E1 !important;
+}
+
+.MuiInputLabel-root.Mui-focused {
+  color: var(--praestitia-primary) !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: var(--surface-3) !important;
+}
+
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #CBD5E1 !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--praestitia-primary) !important;
+}
+
+/* MUI Popups and Menus */
+.MuiPopover-paper,
+.MuiMenu-paper,
+.MuiDialog-paper,
+.MuiDrawer-paper {
+  background-color: var(--surface-2) !important;
+  color: var(--praestitia-text);
+}
+
+.MuiMenuItem-root {
+  color: var(--praestitia-text);
+}
+
+.MuiMenuItem-root:hover {
+  background-color: var(--surface-3) !important;
+}
+
+.MuiList-root {
+  background-color: var(--surface-2) !important;
+}
+
+.MuiAutocomplete-popper {
+  background-color: var(--surface-2) !important;
+}
+
+.MuiAutocomplete-listbox {
+  background-color: var(--surface-2) !important;
+  color: var(--praestitia-text);
+}
+
+.MuiAutocomplete-option {
+  color: var(--praestitia-text);
+}
+
+.MuiAutocomplete-option:hover,
+.MuiAutocomplete-option[aria-selected="true"] {
+  background-color: var(--surface-3) !important;
+}
+
+/* Buttons */
+.MuiButton-root {
+  color: var(--praestitia-text);
+}
+
+.MuiButton-contained {
+  background-color: var(--praestitia-primary) !important;
+  color: white !important;
+}
+
+/* Typography */
+.MuiTypography-root {
+  color: inherit !important;
+}
+
+/* Cards and Papers */
+.MuiCard-root,
+.MuiCardContent-root {
+  background-color: var(--surface-2) !important;
+}
+
+/* Alert components */
+.MuiAlert-root {
+  background-color: var(--surface-2) !important;
+  color: var(--praestitia-text);
+  border: 1px solid var(--surface-3) !important;
+}
+
+.MuiAlert-message {
+  color: inherit;
+}
+
+/* Chips */
+.MuiChip-root {
+  background-color: var(--surface-3) !important;
+  color: var(--praestitia-text);
+}
+
+.MuiChip-label {
+  color: inherit;
+}
+
+/* Box components */
+.MuiBox-root {
+  color: var(--praestitia-text);
+}
+
+/* Helper text */
+.MuiFormHelperText-root {
+  color: #94A3B8 !important;
+}
+
+/* Typography */
+.MuiTypography-body1,
+.MuiTypography-body2,
+.MuiTypography-h1,
+.MuiTypography-h2,
+.MuiTypography-h3,
+.MuiTypography-h4,
+.MuiTypography-h5,
+.MuiTypography-h6 {
+  color: var(--praestitia-text);
+}
 

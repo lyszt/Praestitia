@@ -47,6 +47,33 @@ const Navigator = ({ children, currentPage, onNavigate }) => {
 
           {/* Menu lateral */}
           <ul className="menu w-full grow">
+            {/* Dashboard */}
+            <li>
+              <button
+                className={`is-drawer-close:tooltip is-drawer-close:tooltip-right ${currentPage === 'dashboard' ? 'active' : ''}`}
+                data-tip="Dashboard"
+                onClick={() => onNavigate('dashboard')}
+              >
+                {/* Ícone de dashboard */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                  fill="none"
+                  stroke="currentColor"
+                  className="my-1.5 inline-block size-4"
+                >
+                  <rect x="3" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="3" width="7" height="7"></rect>
+                  <rect x="14" y="14" width="7" height="7"></rect>
+                  <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                <span className="is-drawer-close:hidden">Dashboard</span>
+              </button>
+            </li>
+
             {/* Clientes */}
             <li>
               <button
@@ -99,11 +126,39 @@ const Navigator = ({ children, currentPage, onNavigate }) => {
                 <span className="is-drawer-close:hidden">Leads</span>
               </button>
             </li>
+
+            {/* Sair */}
+            <li>
+              <button
+                className={`is-drawer-close:tooltip is-drawer-close:tooltip-right ${currentPage === 'cliente' ? 'active' : ''}`}
+                    data-tip="Sair"
+                    onClick={() => onNavigate('logout')}
+              >
+                    {/* Icone de logout */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
+                      strokeWidth="2"
+                      fill="none"
+                      stroke="currentColor"
+                      className="my-1.5 inline-block size-4"
+                    >
+                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                      <path d="M16 17l5-5-5-5"></path>
+                      <path d="M21 12H9"></path>
+                    </svg>
+                <span className="is-drawer-close:hidden">Sair</span>
+              </button>
+            </li>
           </ul>
         </div>
       </div>
     </div>
   );
+
+  
 };
 
 export default Navigator;
