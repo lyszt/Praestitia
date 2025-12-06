@@ -3,9 +3,10 @@ import Navigator from '../../components/navigator'
 import { removeToken } from '../../utils/api'
 import DashboardStats from './stats'
 import Clientes from './clientes'
+import Concorrentes from './concorrentes'
 import Leads from './leads'
 
-export default function Dashboard ({ setAuth }) {
+export default function Dashboard({ setAuth }) {
     const [currentPage, setCurrentPage] = useState('dashboard');
 
     const handleNavigate = (page) => {
@@ -23,6 +24,7 @@ export default function Dashboard ({ setAuth }) {
             {currentPage === 'dashboard' && <DashboardStats />}
             {currentPage === 'cliente' && <Clientes />}
             {currentPage === 'lead' && <Leads />}
+            {currentPage === 'concorrente' && <Concorrentes />}
         </Navigator>
     );
 }

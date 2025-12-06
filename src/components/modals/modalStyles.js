@@ -16,10 +16,13 @@ export const getModalStyle = (isExpanded) => {
     return {
         position: 'fixed',
         zIndex: 9999,
-        width: '500px',
+        width: '90%',
+        maxWidth: '500px',
         left: '50%',
-        top: '10%',
-        transform: 'translateX(-50%)',  // Centraliza horizontalmente
-        maxHeight: '80vh'  // Permite scroll se conteúdo for muito grande
+        top: '5%',
+        transform: 'translateX(-50%)',
+        maxHeight: '80vh',
+        display: 'flex',
+        flexDirection: 'column'
     };
 };

@@ -66,7 +66,7 @@ def leads_list_view(request):
         return JsonResponse({'status': 401, 'message': 'Não autenticado.'}, status=401)
 
     if request.method == 'GET':
-        leads = Lead.objects.all()
+        leads = Lead.objects.filter(user=user)
         leads_data = []
 
         for lead in leads:
@@ -104,6 +104,7 @@ def leads_list_view(request):
 
         try:
             lead = Lead.objects.create(
+                user=user,
                 nome=nome,
                 email=email,
                 telefone=data.get('telefone'),
@@ -145,7 +146,7 @@ def lead_detail_view(request, lead_id):
 
     # Get lead or return 404
     try:
-        lead = Lead.objects.get(id=lead_id)
+        lead = Lead.objects.get(id=lead_id, user=user)
     except Lead.DoesNotExist:
         return JsonResponse({'status': 404, 'message': 'Lead não encontrado.'}, status=404)
 

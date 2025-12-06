@@ -127,28 +127,59 @@ const Navigator = ({ children, currentPage, onNavigate }) => {
               </button>
             </li>
 
+            {/* Concorrentes */}
+            <li>
+              <button
+                className={`is-drawer-close:tooltip is-drawer-close:tooltip-right ${currentPage === 'concorrente' ? 'active' : ''}`}
+                data-tip="Concorrentes"
+                onClick={() => onNavigate('concorrente')}
+              >
+                {/* Ícone de concorrentes/empresa */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                  fill="none"
+                  stroke="currentColor"
+                  className="my-1.5 inline-block size-4"
+                >
+                  <path d="M3 21l18 0"></path>
+                  <path d="M9 8l1 0"></path>
+                  <path d="M9 12l1 0"></path>
+                  <path d="M9 16l1 0"></path>
+                  <path d="M14 8l1 0"></path>
+                  <path d="M14 12l1 0"></path>
+                  <path d="M14 16l1 0"></path>
+                  <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16"></path>
+                </svg>
+                <span className="is-drawer-close:hidden">Concorrentes</span>
+              </button>
+            </li>
+
             {/* Sair */}
             <li>
               <button
                 className={`is-drawer-close:tooltip is-drawer-close:tooltip-right ${currentPage === 'cliente' ? 'active' : ''}`}
-                    data-tip="Sair"
-                    onClick={() => onNavigate('logout')}
+                data-tip="Sair"
+                onClick={() => onNavigate('logout')}
               >
-                    {/* Icone de logout */}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      strokeLinejoin="round"
-                      strokeLinecap="round"
-                      strokeWidth="2"
-                      fill="none"
-                      stroke="currentColor"
-                      className="my-1.5 inline-block size-4"
-                    >
-                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                      <path d="M16 17l5-5-5-5"></path>
-                      <path d="M21 12H9"></path>
-                    </svg>
+                {/* Icone de logout */}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                  fill="none"
+                  stroke="currentColor"
+                  className="my-1.5 inline-block size-4"
+                >
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                  <path d="M16 17l5-5-5-5"></path>
+                  <path d="M21 12H9"></path>
+                </svg>
                 <span className="is-drawer-close:hidden">Sair</span>
               </button>
             </li>
@@ -158,7 +189,7 @@ const Navigator = ({ children, currentPage, onNavigate }) => {
     </div>
   );
 
-  
+
 };
 
 export default Navigator;

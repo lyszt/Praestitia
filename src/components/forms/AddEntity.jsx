@@ -74,7 +74,7 @@ const AddEntity = ({ entityType, buttonLabel, fields, apiEndpoint, title, icon, 
             <div className="flex flex-row">
                 <button
                     onClick={() => setShowForm(true)}
-                    className="flex border flex-row gap-2 mt-5 ml-5 mb-5 transition duration-100 rounded p-3 justify-center items-center"
+                    className="flex border flex-row gap-2 transition duration-100 rounded p-3 justify-center items-center"
                     style={{
                         backgroundColor: 'var(--surface-2)',
                         borderColor: 'var(--surface-3)',

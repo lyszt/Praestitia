@@ -46,7 +46,7 @@ def clientes_list_view(request):
         return JsonResponse({'status': 401, 'message': 'Não autenticado.'}, status=401)
 
     if request.method == 'GET':
-        clientes = Cliente.objects.all()
+        clientes = Cliente.objects.filter(user=user)
         clientes_data = []
 
         for cliente in clientes:
@@ -81,6 +81,7 @@ def clientes_list_view(request):
 
         try:
             cliente = Cliente.objects.create(
+                user=user,
                 nome=nome,
                 email=email,
                 telefone=data.get('telefone'),
@@ -120,7 +121,7 @@ def cliente_detail_view(request, cliente_id):
 
     # Get cliente or return 404
     try:
-        cliente = Cliente.objects.get(id=cliente_id)
+        cliente = Cliente.objects.get(id=cliente_id, user=user)
     except Cliente.DoesNotExist:
         return JsonResponse({'status': 404, 'message': 'Cliente não encontrado.'}, status=404)
 

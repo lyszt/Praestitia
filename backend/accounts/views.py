@@ -80,14 +80,21 @@ def register_view(request):
         group, _ = Group.objects.get_or_create(name='default')
 
         # O django cria e já hasheia diretamente a senha
-        User.objects.create_user(
+        user = User.objects.create_user(
             username=username,
             email=email,
             password=password,
             group=group,
         )
         
-        return JsonResponse({'status': 200, 'body': 'Usuário criado com sucesso.'}, status=200)
+        # Cria token para login automático após registro
+        _, token = AuthToken.objects.create(user)
+        
+        return JsonResponse({
+            'status': 200, 
+            'body': 'Usuário criado com sucesso.',
+            'token': token
+        }, status=200)
 
     except IntegrityError:
         return JsonResponse({'status': 401, 'body': 'Erro de integridade (usuário ou email já existe).'}, status=401)

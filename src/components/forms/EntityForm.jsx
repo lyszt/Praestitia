@@ -22,6 +22,8 @@ const EntityForm = ({
     onCancel,
     onSubmit,
     setRefresh,
+    initialValues = {},
+    method = 'POST',
     isExpanded,
     setIsExpanded
 }) => {
@@ -35,7 +37,9 @@ const EntityForm = ({
     const [formData, setFormData] = useState(() => {
         const initialState = {};
         fields.forEach(field => {
-            initialState[field.name] = field.defaultValue || '';
+            initialState[field.name] = initialValues[field.name] !== undefined
+                ? initialValues[field.name]
+                : (field.defaultValue || '');
         });
         return initialState;
     });
@@ -50,22 +54,22 @@ const EntityForm = ({
         e.preventDefault();
         setError(null);
 
-        // Build payload with only defined values
+        // Constroi o payload com valores definidos
         const payload = {};
         fields.forEach(field => {
             const value = formData[field.name];
-            if (field.required || value) {
+            if (field.required || value !== undefined && value !== '') {
                 if (field.type === 'number') {
                     payload[field.name] = parseInt(value) || field.defaultValue || 0;
                 } else {
-                    payload[field.name] = value || undefined;
+                    payload[field.name] = value;
                 }
             }
         });
 
         try {
             const response = await authenticatedFetch(apiEndpoint, {
-                method: "POST",
+                method: method,
                 body: JSON.stringify(payload),
             });
 
@@ -74,10 +78,10 @@ const EntityForm = ({
                 onSubmit?.();
             } else {
                 const data = await response.json();
-                setError(data.message || `Falha ao adicionar ${entityType}`);
+                setError(data.message || `Falha ao salvar ${entityType}`);
             }
         } catch (err) {
-            setError(`Erro ao adicionar ${entityType}: ${err.message}`);
+            setError(`Erro ao salvar ${entityType}: ${err.message}`);
         }
     }
 
@@ -158,7 +162,7 @@ const EntityForm = ({
     const expandedFields = fields.filter(f => f.expanded);
 
     return (
-        <form onSubmit={handleSubmit} className="w-full z-9999 flex flex-col shadow-2xl rounded-lg h-full" style={{ backgroundColor: 'var(--surface-3)', color: 'var(--praestitia-text)' }}>
+        <form onSubmit={handleSubmit} className="w-full z-9999 flex flex-col shadow-2xl rounded-lg h-auto max-h-full overflow-hidden" style={{ backgroundColor: 'var(--surface-3)', color: 'var(--praestitia-text)' }}>
             <div className={`p-4 rounded-t-lg flex items-center justify-between sticky top-0 z-50 flex-shrink-0 ${!isExpanded ? 'handle cursor-move' : ''}`} style={{ backgroundColor: 'var(--surface-2)' }}>
                 <div className="flex items-center gap-2">
                     <DragIndicatorIcon sx={{ color: 'var(--praestitia-primary)' }} />
@@ -206,7 +210,14 @@ const EntityForm = ({
                             Informações Adicionais
                         </Typography>
 
-                        {expandedFields.map(renderField)}
+                        <Box sx={{
+                            display: 'grid',
+                            gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
+                            gap: 2,
+                            mt: 1
+                        }}>
+                            {expandedFields.map(renderField)}
+                        </Box>
                     </>
                 )}
 

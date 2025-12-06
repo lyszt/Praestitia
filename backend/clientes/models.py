@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import EmailValidator, RegexValidator
+from django.conf import settings
 
 # Create your models here.
 
@@ -10,6 +11,7 @@ class Cliente(models.Model):
     """
     
     id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='clientes', null=True, blank=True)
     
     STATUS_CHOICES = [
         ('ativo', 'Ativo'),

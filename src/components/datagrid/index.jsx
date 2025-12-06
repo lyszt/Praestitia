@@ -1,111 +1,104 @@
-import { DataGrid } from "@mui/x-data-grid";
-import Paper from "@mui/material/Paper";
+import React from 'react';
 
 export default function DataTable({
   rows,
   columns,
-  paginationModel,
-  emptyText
+  rowSelectionModel = [],
+  onRowSelectionModelChange,
+  checkboxSelection = true,
+  emptyText = "No data available",
+  ...props
 }) {
+  const handleSelectAll = (e) => {
+    if (e.target.checked) {
+      const allIds = rows.map((r) => r.id);
+      onRowSelectionModelChange(allIds);
+    } else {
+      onRowSelectionModelChange([]);
+    }
+  };
+
+  const handleSelectRow = (id) => {
+    if (rowSelectionModel.includes(id)) {
+      onRowSelectionModelChange(rowSelectionModel.filter((item) => item !== id));
+    } else {
+      onRowSelectionModelChange([...rowSelectionModel, id]);
+    }
+  };
+
+  const isSelected = (id) => rowSelectionModel.includes(id);
+  const allSelected = rows.length > 0 && rowSelectionModel.length === rows.length;
+  const indeterminate = rowSelectionModel.length > 0 && rowSelectionModel.length < rows.length;
+
   return (
-    <Paper sx={{
-      height: 400,
-      width: "100%",
-      position: "relative",
-      zIndex: 1,
-      backgroundColor: 'var(--surface-2)',
-      '& .MuiDataGrid-root': {
-        color: 'var(--praestitia-text)',
-        border: 'none'
-      }
-    }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{ pagination: { paginationModel } }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-        sx={{
-          border: 0,
-          color: '#F8FAFC',
-          '& .MuiDataGrid-cell': {
-            borderColor: 'var(--surface-3)',
-            color: '#F8FAFC !important'
-          },
-          '& .MuiDataGrid-cellContent': {
-            color: '#F8FAFC !important'
-          },
-          '& .MuiDataGrid-columnHeaders': {
-            backgroundColor: 'var(--surface-1)',
-            borderColor: 'var(--surface-3)',
-            color: '#F8FAFC'
-          },
-          '& .MuiDataGrid-columnHeaderTitle': {
-            color: '#F8FAFC !important',
-            fontWeight: 'bold'
-          },
-          '& .MuiDataGrid-row': {
-            backgroundColor: 'var(--surface-2)',
-            '&:hover': {
-              backgroundColor: 'var(--surface-3)'
-            },
-            '&.Mui-selected': {
-              backgroundColor: '#065f46',
-              '&:hover': {
-                backgroundColor: '#047857'
-              }
-            }
-          },
-          '& .MuiDataGrid-footerContainer': {
-            backgroundColor: 'var(--surface-1)',
-            borderColor: 'var(--surface-3)',
-            color: '#F8FAFC'
-          },
-          '& .MuiTablePagination-root': {
-            color: '#F8FAFC !important'
-          },
-          '& .MuiTablePagination-selectLabel, & .MuiTablePagination-displayedRows': {
-            color: '#F8FAFC !important'
-          },
-          '& .MuiTablePagination-select': {
-            color: '#F8FAFC !important'
-          },
-          '& .MuiTablePagination-actions': {
-            color: '#F8FAFC !important'
-          },
-          '& .MuiCheckbox-root': {
-            color: 'var(--praestitia-primary)',
-            '&.Mui-checked': {
-              color: 'var(--praestitia-primary)'
-            }
-          },
-          '& .MuiDataGrid-iconSeparator': {
-            color: '#94A3B8'
-          },
-          '& .MuiDataGrid-sortIcon': {
-            color: '#F8FAFC !important'
-          },
-          '& .MuiDataGrid-menuIconButton': {
-            color: '#F8FAFC !important'
-          },
-          '& .MuiDataGrid-overlay': {
-            backgroundColor: 'var(--surface-2)',
-            color: '#F8FAFC !important'
-          },
-          '& .MuiIconButton-root': {
-            color: '#F8FAFC !important'
-          },
-          '& .MuiSvgIcon-root': {
-            color: '#F8FAFC !important'
-          },
-          '& .MuiDataGrid-selectedRowCount': {
-            color: '#F8FAFC !important'
-          }
-        }}
-        localeText={{
-          noRowsLabel: emptyText
-        }}
-      />
-    </Paper>
+    <div className="overflow-x-auto w-full h-96 border border-[var(--surface-3)] rounded-lg bg-[var(--surface-2)]">
+      <table className="table table-zebra table-pin-rows w-full text-[var(--praestitia-text)]">
+        <thead>
+          <tr className="bg-[var(--surface-1)] text-[var(--praestitia-text)] border-b border-[var(--surface-3)]">
+            {checkboxSelection && (
+              <th className="w-12 bg-[var(--surface-1)]">
+                <label>
+                  <input
+                    type="checkbox"
+                    className="checkbox checkbox-sm checkbox-primary rounded border-[var(--surface-3)]"
+                    checked={allSelected}
+                    ref={input => {
+                      if (input) input.indeterminate = indeterminate;
+                    }}
+                    onChange={handleSelectAll}
+                  />
+                </label>
+              </th>
+            )}
+            {columns.map((col) => (
+              <th
+                key={col.field}
+                className="bg-[var(--surface-1)] text-sm font-bold uppercase tracking-wider"
+                style={{ width: col.width, minWidth: col.minWidth, flex: col.flex }}
+              >
+                {col.headerName}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.length === 0 ? (
+            <tr>
+              <td
+                colSpan={checkboxSelection ? columns.length + 1 : columns.length}
+                className="text-center py-10 opacity-70"
+              >
+                {emptyText}
+              </td>
+            </tr>
+          ) : (
+            rows.map((row) => (
+              <tr
+                key={row.id}
+                className={`hover:bg-[var(--surface-3)] border-b border-[var(--surface-3)/50] ${isSelected(row.id) ? 'bg-[var(--surface-3)]' : ''}`}
+              >
+                {checkboxSelection && (
+                  <th>
+                    <label>
+                      <input
+                        type="checkbox"
+                        className="checkbox checkbox-sm checkbox-primary rounded border-[var(--surface-3)]"
+                        checked={isSelected(row.id)}
+                        onChange={() => handleSelectRow(row.id)}
+                      />
+                    </label>
+                  </th>
+                )}
+                {columns.map((col) => (
+                  <td key={`${row.id}-${col.field}`} className="whitespace-nowrap">
+                    {row[col.field]}
+                  </td>
+                ))}
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
   );
 }

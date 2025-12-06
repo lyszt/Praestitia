@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { authenticatedFetch } from "../../../utils/api";
 import Datagrid from "../../../components/datagrid";
 import AddEntity from "../../../components/forms/AddEntity";
+import DeleteButton from "../../../components/buttons/DeleteButton";
+import EditEntity from "../../../components/forms/EditEntity";
+import EditIcon from '@mui/icons-material/Edit';
 import Person from '@mui/icons-material/Person';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
@@ -9,6 +12,7 @@ const Clientes = () => {
   const [clientes, setClientes] = useState([]);
   const [clientesLength, setClientesLength] = useState(0);
   const [clienteRefresh, setClienteRefresh] = useState(0);
+  const [selectedIds, setSelectedIds] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -76,20 +80,44 @@ const Clientes = () => {
       </header>
 
       <section aria-label="Gerenciamento de clientes">
-        <AddEntity
-          entityType="cliente"
-          buttonLabel="Adicionar Cliente"
-          title="Adicionar Cliente"
-          icon={PersonAddIcon}
-          apiEndpoint="/api/clientes/"
-          fields={clienteFields}
-          setRefresh={setClienteRefresh}
-        />
+        <div className="flex flex-row gap-3 items-center mb-5">
+          <AddEntity
+            entityType="cliente"
+            buttonLabel="Adicionar Cliente"
+            title="Adicionar Cliente"
+            icon={PersonAddIcon}
+            apiEndpoint="/api/clientes/"
+            fields={clienteFields}
+            setRefresh={setClienteRefresh}
+          />
+          <EditEntity
+            selectedIds={selectedIds}
+            rows={clientes}
+            entityType="cliente"
+            buttonLabel="Editar Cliente"
+            title="Editar Cliente"
+            icon={EditIcon}
+            apiEndpoint="/api/clientes/"
+            fields={clienteFields}
+            setRefresh={setClienteRefresh}
+          />
+          <DeleteButton
+            selectedIds={selectedIds}
+            entityType="cliente"
+            apiEndpoint="/api/clientes/"
+            onDeleteSuccess={() => {
+              setClienteRefresh(prev => prev + 1);
+              setSelectedIds([]);
+            }}
+          />
+        </div>
         <Datagrid
           rows={clientes}
           columns={clienteColumns}
           paginationModel={currentPaginationModel}
           emptyText="Nenhum cliente cadastrado ainda"
+          onRowSelectionModelChange={(newSelection) => setSelectedIds(newSelection)}
+          rowSelectionModel={selectedIds}
         />
       </section>
     </main>

@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import EmailValidator, RegexValidator
+from django.conf import settings
 
 # Create your models here.
 
@@ -11,6 +12,7 @@ class Lead(models.Model):
     
     # Chave primária (explícita para evitar warnings da IDE)
     id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='leads', null=True, blank=True)
     
     STATUS_CHOICES = [
         ('novo', 'Novo'),

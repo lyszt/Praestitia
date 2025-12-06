@@ -144,7 +144,7 @@ const DashboardStats = () => {
         }}>
           <CardContent>
             <Typography variant="h6" gutterBottom sx={{ color: 'var(--praestitia-text)' }}>
-              Bem-vindo ao Praestitia
+              Bem-vindo ao <b className="text-emerald-500 bold">Praestitia</b>: Sistema de gerenciamento de Marketing
             </Typography>
             <Typography variant="body2" sx={{ color: 'var(--muted)' }}>
               Utilize o menu lateral para navegar entre as diferentes seções do sistema.
