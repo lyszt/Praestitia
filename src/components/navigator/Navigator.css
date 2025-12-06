@@ -1,28 +1,39 @@
-
-button:hover * {
-    color: var(--praestitia-primary) !important;
-}
-button:hover svg {
-    fill: var(--praestitia-primary) !important;
+.navbar {
+    background-color: var(--surface-1) !important;
+    border-bottom: 1px solid var(--surface-2);
 }
 
-
-button:active {
+.drawer-side .min-h-full {
     background-color: var(--surface-2) !important;
+    border-right: 1px solid var(--surface-3);
 }
 
-.menu button:active {
-    background-color: var(--surface-3) !important;
+.menu button {
+    color: var(--muted);
+    transition: all 0.2s ease;
 }
 
-.btn-ghost:active {
-    background-color: var(--surface-2) !important;
+.menu button:hover {
+    background-color: var(--surface-3);
+    color: var(--praestitia-primary);
 }
 
-.navbar, .drawer-side, .menu button, .menu span {
-    color: var(--praestitia-text) !important;
+.menu button:hover svg {
+    stroke: var(--praestitia-primary);
 }
-.menu button svg {
-    stroke: var(--praestitia-text) !important;
-    fill: none !important;
+
+.menu button.active {
+    background-color: var(--surface-3);
+    color: var(--praestitia-primary);
+    border-left: 3px solid var(--praestitia-primary);
+}
+
+.menu button.active svg {
+    stroke: var(--praestitia-primary);
+}
+
+
+.drawer-content {
+    background-color: var(--surface-1);
+    color: var(--praestitia-text);
 }

@@ -46,7 +46,7 @@ const Navigator = ({ children, currentPage, onNavigate }) => {
 
 
           {/* Menu lateral */}
-          <ul className="menu w-full grow">
+          <ul className="menu w-full grow gap-3">
             {/* Dashboard */}
             <li>
               <button
@@ -159,9 +159,9 @@ const Navigator = ({ children, currentPage, onNavigate }) => {
             </li>
 
             {/* Sair */}
-            <li>
+            <li >
               <button
-                className={`is-drawer-close:tooltip is-drawer-close:tooltip-right ${currentPage === 'cliente' ? 'active' : ''}`}
+                className={`is-drawer-close:tooltip is-drawer-close:tooltip-right ${currentPage === 'logout' ? 'active' : ''}`}
                 data-tip="Sair"
                 onClick={() => onNavigate('logout')}
               >

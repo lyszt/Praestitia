@@ -88,16 +88,9 @@ const DeleteButton = ({
             <button
                 onClick={handleClickOpen}
                 disabled={isDisabled}
-                className="flex border flex-row gap-2 transition duration-100 rounded p-3 justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed"
-                style={{
-                    backgroundColor: isDisabled ? 'var(--surface-1)' : 'var(--surface-2)',
-                    borderColor: 'var(--surface-3)',
-                    color: 'var(--praestitia-text)'
-                }}
-                onMouseOver={(e) => !isDisabled && (e.currentTarget.style.backgroundColor = 'var(--surface-3)')}
-                onMouseOut={(e) => !isDisabled && (e.currentTarget.style.backgroundColor = 'var(--surface-2)')}
+                className="flex border border-slate-700 flex-row gap-2 transition duration-100 rounded p-3 justify-center items-center disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-900 bg-gray-800 text-slate-50 hover:bg-slate-700 disabled:hover:bg-gray-900"
             >
-                <span style={{ color: isDisabled ? 'var(--muted)' : '#ef4444', fontSize: '24px' }}>×</span>
+                <span className={`text-2xl ${isDisabled ? 'text-slate-400' : 'text-red-500'}`}>×</span>
                 <span>Deletar {count > 0 ? `(${count})` : ''}</span>
             </button>
 

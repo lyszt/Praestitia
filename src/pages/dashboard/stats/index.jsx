@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
@@ -13,64 +13,64 @@ const DashboardStats = () => {
   const [leadsLength, setLeadslength] = useState(0);
 
   useEffect(() => {
-      (async () => {
-        try {
-          const response = await authenticatedFetch("/api/clientes/");
-          if (response.ok) {
-            const data = await response.json();
-            if (data.clientes) {
-              setClientes(data.clientes);
-              setClientesLength(data.clientes.length);
-            }
-          } else {
-            console.error("Falha ao buscar clientes: status", response.status);
+    (async () => {
+      try {
+        const response = await authenticatedFetch("/api/clientes/");
+        if (response.ok) {
+          const data = await response.json();
+          if (data.clientes) {
+            setClientes(data.clientes);
+            setClientesLength(data.clientes.length);
           }
-        } catch (error) {
-          console.error("Erro ao buscar clientes:", error);
+        } else {
+          console.error("Falha ao buscar clientes: status", response.status);
         }
-      })();
-    }, []);
+      } catch (error) {
+        console.error("Erro ao buscar clientes:", error);
+      }
+    })();
+  }, []);
 
   useEffect(() => {
-      (async () => {
-        try {
-          const response = await authenticatedFetch("/api/leads/");
-          if (response.ok) {
-            const data = await response.json();
-            if (data.leads) {
-              setLeads(data.leads);
-              setLeadslength(data.leads.length);
-            }
-          } else {
-            console.error("Falha ao buscar leads: status", response.status);
+    (async () => {
+      try {
+        const response = await authenticatedFetch("/api/leads/");
+        if (response.ok) {
+          const data = await response.json();
+          if (data.leads) {
+            setLeads(data.leads);
+            setLeadslength(data.leads.length);
           }
-        } catch (error) {
-          console.error("Erro ao buscar leads:", error);
+        } else {
+          console.error("Falha ao buscar leads: status", response.status);
         }
-      })();
-    }, []);
+      } catch (error) {
+        console.error("Erro ao buscar leads:", error);
+      }
+    })();
+  }, []);
 
-    const calcularPessoasCadastradas = () => {
-      let countNew = 0;
-      const currentDate = new Date();
+  const calcularPessoasCadastradas = () => {
+    let countNew = 0;
+    const currentDate = new Date();
 
-      const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+    const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
 
-      clientes.forEach((cliente) => {
-        const cadastroDate = new Date(cliente.data_cadastro);
-        if(cadastroDate >= firstDayOfMonth && cadastroDate <= currentDate) {
-          countNew++;
-        }
-      })
+    clientes.forEach((cliente) => {
+      const cadastroDate = new Date(cliente.data_cadastro);
+      if (cadastroDate >= firstDayOfMonth && cadastroDate <= currentDate) {
+        countNew++;
+      }
+    })
 
-      leads.forEach((lead) => {
-        const cadastroDate = new Date(lead.data_cadastro);
-        if(cadastroDate >= firstDayOfMonth && cadastroDate <= currentDate) {
-          countNew++;
-        }
-      })
-      return countNew;
-    }
+    leads.forEach((lead) => {
+      const cadastroDate = new Date(lead.data_cadastro);
+      if (cadastroDate >= firstDayOfMonth && cadastroDate <= currentDate) {
+        countNew++;
+      }
+    })
+    return countNew;
+  }
 
   const stats = [
     {

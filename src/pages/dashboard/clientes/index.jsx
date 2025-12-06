@@ -72,8 +72,8 @@ const Clientes = () => {
 
   return (
     <main>
-      <header className="p-5 w-full" style={{ backgroundColor: '#000000' }}>
-        <h1 className="w-full flex justify-left items-center gap-5" style={{ color: 'var(--praestitia-text)' }}>
+      <header className="p-5 w-full bg-transparent">
+        <h1 className="w-full flex justify-left items-center gap-5 text-slate-200">
           <Person sx={{ fontSize: 40, color: 'var(--praestitia-primary)' }} />
           Clientes Cadastrados
         </h1>

@@ -162,17 +162,16 @@ const EntityForm = ({
     const expandedFields = fields.filter(f => f.expanded);
 
     return (
-        <form onSubmit={handleSubmit} className="w-full z-9999 flex flex-col shadow-2xl rounded-lg h-auto max-h-full overflow-hidden" style={{ backgroundColor: 'var(--surface-3)', color: 'var(--praestitia-text)' }}>
-            <div className={`p-4 rounded-t-lg flex items-center justify-between sticky top-0 z-50 flex-shrink-0 ${!isExpanded ? 'handle cursor-move' : ''}`} style={{ backgroundColor: 'var(--surface-2)' }}>
+        <form onSubmit={handleSubmit} className="w-full z-9999 flex flex-col shadow-2xl rounded-lg h-auto max-h-full overflow-hidden bg-slate-700 text-slate-200">
+            <div className={`p-4 rounded-t-lg flex items-center bg-slate-700 justify-between sticky top-0 z-50 flex-shrink-0 ${!isExpanded ? 'handle cursor-move' : ''}`}>
                 <div className="flex items-center gap-2">
                     <DragIndicatorIcon sx={{ color: 'var(--praestitia-primary)' }} />
-                    <h2 className="text-lg font-semibold" style={{ color: 'var(--praestitia-text)' }}>{title}</h2>
+                    <h2 className="text-lg font-semibold text-slate-200">{title}</h2>
                 </div>
                 <button
                     type="button"
                     onClick={onCancel}
-                    className="p-1 rounded transition-colors"
-                    style={{ backgroundColor: 'transparent' }}
+                    className="p-1 rounded transition-colors bg-transparent"
                 >
                     <CloseIcon sx={{ color: 'var(--praestitia-primary)' }} />
                 </button>

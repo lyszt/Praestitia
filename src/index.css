@@ -17,19 +17,12 @@ body * {
 }
 
 body {
-    background: radial-gradient(circle at 10% 10%, var(--surface-2) 0%, var(--surface-1) 40%);
+    background-color: #3b4d66;
     color: var(--praestitia-text);
 }
 
-/* Global overrides to prevent any white backgrounds */
-div, section, main, header, footer, article, aside, nav {
-    background-color: transparent !important;
-}
 
-/* Ensure no white backgrounds anywhere */
-html {
-    background-color: var(--surface-1) !important;
-}
+
 
 #root {
     background-color: transparent !important;

@@ -74,16 +74,16 @@ const theme = createTheme({
         root: {
           borderRadius: 8,
           textTransform: 'none',
-          color: '#F8FAFC',
+          color: '#252525ff',
           fontWeight: 500
         },
         contained: {
-          backgroundColor: '#000000ff',
+          backgroundColor: '#0f1724',
           fill: 'white',
           color: '#FFFFFF !important',
           '&:hover': {
-            backgroundColor: '#000000ff',
-            color: '#FFFFFF !important'
+            backgroundColor: '#0f1827ff',
+            color: '#ffffffff !important'
           }
         },
         text: {

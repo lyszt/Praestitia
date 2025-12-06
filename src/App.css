@@ -160,6 +160,7 @@ input:-webkit-autofill:active {
 .MuiCard-root,
 .MuiCardContent-root {
   background-color: var(--surface-2) !important;
+  border-color: var(--surface-3) !important;
 }
 
 /* Alert components */

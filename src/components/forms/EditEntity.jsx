@@ -125,16 +125,9 @@ const EditEntity = ({ selectedIds, rows, entityType, buttonLabel, fields, apiEnd
             <div className="flex flex-row">
                 <button
                     onClick={handleEditClick}
-                    className="flex border flex-row gap-2 transition duration-100 rounded p-3 justify-center items-center"
-                    style={{
-                        backgroundColor: 'var(--surface-2)',
-                        borderColor: 'var(--surface-3)',
-                        color: 'var(--praestitia-text)'
-                    }}
-                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'var(--surface-3)'}
-                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'var(--surface-2)'}
+                    className="flex border border-slate-700 flex-row gap-2 transition duration-100 rounded p-3 justify-center items-center bg-gray-800 text-slate-50 hover:bg-slate-700"
                 >
-                    <span style={{ color: 'var(--praestitia-primary)', fontSize: '24px' }}>✎</span>
+                    <span className="text-emerald-500 text-2xl">✎</span>
                     <span>{buttonLabel}</span>
                 </button>
             </div>
