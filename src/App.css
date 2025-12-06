@@ -1,14 +1,25 @@
-
 /* Font families */
-.lato { font-family: 'Lato', sans-serif; }
+.lato {
+  font-family: 'Lato', sans-serif;
+}
 
 /* Colors */
-.green-custom { background-color: #10B981; }
-.grey { background-color: #334155; }
-.dark-grey { background-color: #1f2937; }
+.green-custom {
+  background-color: #10B981;
+}
+
+.grey {
+  background-color: #334155;
+}
+
+.dark-grey {
+  background-color: #1f2937;
+}
 
 /* Geometric shapes */
-.circle { border-radius: 50%; }
+.circle {
+  border-radius: 50%;
+}
 
 
 
@@ -21,11 +32,7 @@ select {
   border-color: var(--surface-3) !important;
 }
 
-button {
-  background-color: var(--surface-2) !important;
-  color: var(--praestitia-text);
-  border-color: var(--surface-3) !important;
-}
+
 
 .MuiPaper-root {
   background-color: var(--surface-2) !important;
@@ -142,10 +149,7 @@ input:-webkit-autofill:active {
   color: var(--praestitia-text);
 }
 
-.MuiButton-contained {
-  background-color: var(--praestitia-primary) !important;
-  color: white !important;
-}
+
 
 /* Typography */
 .MuiTypography-root {
@@ -200,4 +204,3 @@ input:-webkit-autofill:active {
 .MuiTypography-h6 {
   color: var(--praestitia-text);
 }
-

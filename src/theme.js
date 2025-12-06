@@ -78,10 +78,12 @@ const theme = createTheme({
           fontWeight: 500
         },
         contained: {
-          backgroundColor: EMERALD,
+          backgroundColor: '#000000ff',
+          fill: 'white',
           color: '#FFFFFF !important',
           '&:hover': {
-            backgroundColor: '#059669'
+            backgroundColor: '#000000ff',
+            color: '#FFFFFF !important'
           }
         },
         text: {
