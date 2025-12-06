@@ -1,2 +1,3 @@
 - Keep all comments in portuguese.
-- NEVER change any port configuration or url configuration
+- Don't change the PORT to the server 
+- Don't change the PORT to the frontend

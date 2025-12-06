@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react-oxc";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
@@ -17,16 +17,6 @@ export default defineConfig({
   build: {
     minify: "esbuild",
     chunkSizeWarningLimit: 600,
-  },
-
-  optimizeDeps: {
-    rolldownOptions: {},
-  },
-
-  ssr: {
-    optimizeDeps: {
-      rolldownOptions: {},
-    },
   },
 
 });
