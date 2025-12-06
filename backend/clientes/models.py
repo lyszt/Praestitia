@@ -9,6 +9,8 @@ class Cliente(models.Model):
     Representa clientes que já converteram de leads ou foram cadastrados diretamente.
     """
     
+    id = models.AutoField(primary_key=True)
+    
     STATUS_CHOICES = [
         ('ativo', 'Ativo'),
         ('inativo', 'Inativo'),

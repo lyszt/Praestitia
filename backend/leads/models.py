@@ -9,6 +9,9 @@ class Lead(models.Model):
     Representa potenciais clientes que ainda não converteram.
     """
     
+    # Chave primária (explícita para evitar warnings da IDE)
+    id = models.AutoField(primary_key=True)
+    
     STATUS_CHOICES = [
         ('novo', 'Novo'),
         ('contatado', 'Contatado'),
