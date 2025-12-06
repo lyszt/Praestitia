@@ -2,119 +2,80 @@
 
 Sistema de gerenciamento de leads e clientes com dashboard integrado.
 
-## Pré-requisitos
+## Sobre o Banco de Dados (SQLite)
 
+Este projeto utiliza **SQLite** como banco de dados.
+
+> **IMPORTANTE**: O arquivo do banco de dados (`backend/db.sqlite3`) **está incluído no repositório**.
+> Isso significa que **as tabelas já estão criadas** e o ambiente está pronto para uso imediato após a instalação das dependências, sem necessidade de configuração complexa de banco de dados.
+
+## Scripts de Gerenciamento
+
+Para facilitar a manutenção do banco de dados, incluímos um script utilitário na raiz do projeto.
+
+### `preparar_banco.sh`
+
+Este script ajuda a gerenciar o estado do banco de dados.
+
+**Como usar:**
+```bash
+./preparar_banco.sh
+```
+
+Ele oferecerá as seguintes opções:
+1.  **Atualizar migrações**: Aplica quaisquer novas alterações de esquema sem perder dados.
+2.  **Recriar do zero**: Exclui o arquivo `db.sqlite3` existente e recria todas as tabelas (Útil se quiser começar com um banco limpo).
+
+---
+
+## Instalação e Execução
+
+### Pré-requisitos
 - Python 3.8+
 - Node.js 16+
-- npm ou yarn
 
-## Instalação
+### 1. Configurando o Backend (Django)
 
-### Backend (Django)
-
-1. Entre na pasta do backend:
 ```bash
 cd backend
-```
 
-2. Crie e ative o ambiente virtual:
-```bash
-python -m venv venv
+# Criar e ativar ambiente virtual
+python3 -m venv venv
 source venv/bin/activate  # Linux/Mac
-# ou
-venv\Scripts\activate  # Windows
-```
+# ou venv\Scripts\activate no Windows
 
-3. Instale as dependências:
-```bash
+# Instalar dependências
 pip install -r requirements.txt
-```
 
-4. Execute as migrações:
-```bash
+# (Opcional) Se quiser garantir que o banco está atualizado
 python manage.py migrate
+
+# Iniciar o servidor
+python manage.py runserver
 ```
 
-5. Inicie o servidor:
-```bash
-python manage.py runserver 127.0.0.1:5000
-```
+### 2. Configurando o Frontend (React + Vite)
 
-### Frontend (React + Vite)
+Em um novo terminal, na raiz do projeto:
 
-1. Na raiz do projeto, instale as dependências:
 ```bash
+# Instalar dependências
 npm install
-```
 
-2. Inicie o servidor de desenvolvimento:
-```bash
+# Iniciar servidor de desenvolvimento
 npm run dev
-```
-
-Ou execute tudo junto:
-```bash
-npm run dev  # Inicia frontend e backend simultaneamente
 ```
 
 ## Dados de Teste
 
-Para facilitar o desenvolvimento e testes, incluímos um script que gera dados.
-
-### Gerar Dados de Teste
-
-Execute o comando a partir da pasta `backend`:
+Para popular o banco com dados fictícios para teste:
 
 ```bash
 cd backend
-python manage.py gerar_dados_teste
+python manage.py gerar_dados_teste --leads 20 --clientes 10
 ```
 
-### Opções Disponíveis
+## Tecnologias
 
-```bash
-# Gerar quantidade personalizada
-python manage.py gerar_dados_teste --leads 50 --clientes 30
-
-# Limpar dados existentes antes de gerar novos
-python manage.py gerar_dados_teste --limpar
-
-# Ajuda com todas as opções
-python manage.py gerar_dados_teste --help
-```
-
-### Parâmetros
-
-- `--leads N`: Número de leads para gerar (padrão: 20)
-- `--clientes N`: Número de clientes para gerar (padrão: 15)
-- `--limpar`: Remove todos os dados existentes antes de gerar novos
-
-
-## Estrutura do Banco de Dados
-
-O projeto utiliza SQLite em desenvolvimento. As tabelas são criadas automaticamente através das migrações do Django.
-
-### Principais Entidades
-
-- **Users**: Usuários do sistema com autenticação Knox
-- **Leads**: Leads em prospecção
-- **Clientes**: Clientes cadastrados
-
-## Tecnologias Utilizadas
-
-### Frontend
-- React 18
-- Vite
-- Material-UI (MUI)
-- Tailwind CSS
-- React Router
-
-### Backend
-- Django 5.2
-- Django Knox (autenticação)
-- SQLite
-- Django CORS Headers
-
-## Biblioteca de Componentes
-
-Interface baseada em: MaterialUI e DaisyUI
+- **Frontend**: React, Vite, Tailwind CSS, Material-UI
+- **Backend**: Django 5.2, Django Knox, SQLite
