@@ -2,55 +2,44 @@
 
 const API_BASE_URL = 'http://127.0.0.1:5000'
 
+// Recupera token JWT do localStorage
 export function getToken() {
-    /**
-     * Retorna o token de autenticação armazenado no localStorage
-     */
     return localStorage.getItem('token_acesso')
 }
 
-
+// Armazena token JWT no localStorage (mantém sessão ativa)
 export function setToken(token) {
-    /**
-     * Armazena o token de autenticação no localStorage
-     */
     if (token) {
         localStorage.setItem('token_acesso', token)
     }
 }
 
+// Remove token do localStorage (efetua logout)
 export function removeToken() {
-    /**
-     * Remove o token de autenticação do localStorage (logout)
-     */
     localStorage.removeItem('token_acesso')
 }
 
-
+// Verifica se usuário está autenticado (usa !! para converter em boolean)
 export function isAuthenticated() {
-    /**
-     * Verifica se o usuário está autenticado (tem token válido)
-     */
     return !!getToken()
 }
 
-
+// Faz requisição HTTP autenticada adicionando token no header Authorization
 export async function authenticatedFetch(endpoint, options = {}) {
-    /**
-     * Faz uma requisição autenticada à API
-     * endpoint - Endpoint da API (ex: '/api/users')
-     * options - Opções do fetch (method, body, headers, etc.)
-     */
     const token = getToken()
+    
+    // Monta headers com Content-Type padrão e mescla com headers customizados
     const headers = {
         'Content-Type': 'application/json',
         ...(options.headers || {})
     }
 
+    // Adiciona Bearer token se usuário estiver autenticado
     if (token) {
         headers['Authorization'] = `Bearer ${token}`
     }
 
+    // Constrói URL completa (suporta paths relativos e URLs absolutas)
     const url = endpoint.startsWith('http') ? endpoint : `${API_BASE_URL}${endpoint}`
 
     try {
@@ -66,10 +55,7 @@ export async function authenticatedFetch(endpoint, options = {}) {
     }
 }
 
-
+// Retorna URL base da API (centralizando configuração)
 export function getApiBaseUrl() {
-    /**
-     * Retorna a URL base da API
-     */
     return API_BASE_URL
 }

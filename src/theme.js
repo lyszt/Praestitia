@@ -1,12 +1,15 @@
 import { createTheme } from '@mui/material/styles'
 
-const EMERALD = '#10B981'
-const SURFACE_1 = '#0f1724'
-const SURFACE_2 = '#1f2937'
-const SURFACE_3 = '#334155'
-const TEXT_PRIMARY = '#F8FAFC' // slate-50 - very light for max contrast
-const TEXT_SECONDARY = '#CBD5E1' // slate-300 - lighter muted text
-const TEXT_DISABLED = '#64748B' // slate-500
+// Tema customizado MUI: modo dark com cor principal emerald e alto contraste
+
+// Paleta de cores
+const EMERALD = '#10B981'          // Cor principal (botões, ações primárias)
+const SURFACE_1 = '#0f1724'        // Fundo escuro principal
+const SURFACE_2 = '#1f2937'        // Fundo de cards/papers/inputs
+const SURFACE_3 = '#334155'        // Bordas, divisores, estados hover
+const TEXT_PRIMARY = '#F8FAFC'     // slate-50 - texto principal (máximo contraste)
+const TEXT_SECONDARY = '#CBD5E1'   // slate-300 - texto secundário/muted
+const TEXT_DISABLED = '#64748B'    // slate-500 - texto desabilitado
 
 const theme = createTheme({
   palette: {

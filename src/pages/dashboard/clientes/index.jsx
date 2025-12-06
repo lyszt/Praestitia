@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { authenticatedFetch } from "../../../utils/api";
 import Datagrid from "../../../components/datagrid";
-import AddCliente from "./forms/AddCliente";
+import AddEntity from "../../../components/forms/AddEntity";
 import Person from '@mui/icons-material/Person';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 const Clientes = () => {
   const [clientes, setClientes] = useState([]);
@@ -12,7 +13,7 @@ const Clientes = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await authenticatedFetch("/api/clientes");
+        const response = await authenticatedFetch("/api/clientes/");
         if (response.ok) {
           const data = await response.json();
           if (data.clientes) {
@@ -38,6 +39,33 @@ const Clientes = () => {
     { field: "status", headerName: "Status", width: 120, minWidth: 100 }
   ];
 
+  const clienteFields = [
+    { name: 'nome', label: 'Nome Completo', required: true, helperText: 'Nome completo do cliente' },
+    { name: 'email', label: 'Email', type: 'email', required: false, helperText: 'Email de contato' },
+    { name: 'telefone', label: 'Telefone', mask: '(99) 99999-9999', placeholder: '(00) 00000-0000', helperText: 'Telefone de contato' },
+    { name: 'empresa', label: 'Empresa', helperText: 'Empresa onde trabalha (opcional)' },
+    {
+      name: 'status',
+      label: 'Status',
+      type: 'select',
+      required: true,
+      defaultValue: 'Ativo',
+      options: [
+        { value: 'Ativo', label: 'Ativo' },
+        { value: 'Inativo', label: 'Inativo' },
+        { value: 'Prospecto', label: 'Prospecto' },
+        { value: 'Arquivado', label: 'Arquivado' }
+      ],
+      helperText: 'Status atual do cliente'
+    },
+    { name: 'cpf_cnpj', label: 'CPF/CNPJ', expanded: true, size: 'small', helperText: 'CPF ou CNPJ do cliente' },
+    { name: 'endereco', label: 'Endereço', expanded: true, size: 'small', helperText: 'Endereço completo' },
+    { name: 'cidade', label: 'Cidade', expanded: true, size: 'small' },
+    { name: 'estado', label: 'Estado', expanded: true, size: 'small', placeholder: 'SP' },
+    { name: 'cep', label: 'CEP', expanded: true, size: 'small', placeholder: '00000-000', helperText: 'CEP do endereço' },
+    { name: 'observacoes', label: 'Observações', expanded: true, multiline: true, rows: 3, size: 'small', placeholder: 'Informações adicionais sobre o cliente...', helperText: 'Notas e observações' }
+  ];
+
   return (
     <main>
       <header className="p-5 w-full" style={{ backgroundColor: '#000000' }}>
@@ -48,7 +76,15 @@ const Clientes = () => {
       </header>
 
       <section aria-label="Gerenciamento de clientes">
-        <AddCliente setClienteRefresh={setClienteRefresh} />
+        <AddEntity
+          entityType="cliente"
+          buttonLabel="Adicionar Cliente"
+          title="Adicionar Cliente"
+          icon={PersonAddIcon}
+          apiEndpoint="/api/clientes/"
+          fields={clienteFields}
+          setRefresh={setClienteRefresh}
+        />
         <Datagrid
           rows={clientes}
           columns={clienteColumns}

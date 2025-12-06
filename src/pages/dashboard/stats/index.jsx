@@ -1,34 +1,93 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import { Card, CardContent, Typography, Grid } from '@mui/material';
+import { authenticatedFetch } from '../../../utils/api';
 
 const DashboardStats = () => {
-  // Dados fictícios - você pode conectar com API depois
+  const [clientes, setClientes] = useState([]);
+  const [clientesLength, setClientesLength] = useState(0);
+  const [leads, setLeads] = useState([]);
+  const [leadsLength, setLeadslength] = useState(0);
+
+  useEffect(() => {
+      (async () => {
+        try {
+          const response = await authenticatedFetch("/api/clientes/");
+          if (response.ok) {
+            const data = await response.json();
+            if (data.clientes) {
+              setClientes(data.clientes);
+              setClientesLength(data.clientes.length);
+            }
+          } else {
+            console.error("Falha ao buscar clientes: status", response.status);
+          }
+        } catch (error) {
+          console.error("Erro ao buscar clientes:", error);
+        }
+      })();
+    }, []);
+
+  useEffect(() => {
+      (async () => {
+        try {
+          const response = await authenticatedFetch("/api/leads/");
+          if (response.ok) {
+            const data = await response.json();
+            if (data.leads) {
+              setLeads(data.leads);
+              setLeadslength(data.leads.length);
+            }
+          } else {
+            console.error("Falha ao buscar leads: status", response.status);
+          }
+        } catch (error) {
+          console.error("Erro ao buscar leads:", error);
+        }
+      })();
+    }, []);
+
+    const calcularPessoasCadastradas = () => {
+      let countNew = 0;
+      const currentDate = new Date();
+
+      const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+
+      clientes.forEach((cliente) => {
+        const cadastroDate = new Date(cliente.data_cadastro);
+        if(cadastroDate >= firstDayOfMonth && cadastroDate <= currentDate) {
+          countNew++;
+        }
+      })
+
+      leads.forEach((lead) => {
+        const cadastroDate = new Date(lead.data_cadastro);
+        if(cadastroDate >= firstDayOfMonth && cadastroDate <= currentDate) {
+          countNew++;
+        }
+      })
+      return countNew;
+    }
+
   const stats = [
     {
       title: 'Total de Clientes',
-      value: '150',
+      value: clientesLength,
       icon: <PeopleIcon sx={{ fontSize: 40, color: '#10B981' }} />,
       color: '#10B981'
     },
     {
       title: 'Leads Ativos',
-      value: '45',
+      value: leadsLength,
       icon: <TrendingUpIcon sx={{ fontSize: 40, color: '#10B981' }} />,
       color: '#10B981'
     },
     {
-      title: 'Taxa de Conversão',
-      value: '32%',
-      icon: <AttachMoneyIcon sx={{ fontSize: 40, color: '#10B981' }} />,
-      color: '#10B981'
-    },
-    {
-      title: 'Novos este Mês',
-      value: '12',
+      title: 'Pessoas adicionadas no sistema este Mês',
+      value: calcularPessoasCadastradas(),
       icon: <DashboardIcon sx={{ fontSize: 40, color: '#10B981' }} />,
       color: '#10B981'
     }
@@ -46,7 +105,7 @@ const DashboardStats = () => {
 
       <Grid container spacing={3}>
         {stats.map((stat, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
+          <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
             <Card
               sx={{
                 height: '100%',

@@ -1,4 +1,6 @@
+// Retorna estilos CSS para modal baseado no estado de expansão
 export const getModalStyle = (isExpanded) => {
+    // Modal expandido: ocupa tela inteira (fullscreen)
     if (isExpanded) {
         return {
             position: 'fixed',
@@ -10,13 +12,14 @@ export const getModalStyle = (isExpanded) => {
             transform: 'none'
         };
     }
+    // Modal normal: centralizado com largura fixa de 500px
     return {
         position: 'fixed',
         zIndex: 9999,
         width: '500px',
         left: '50%',
         top: '10%',
-        transform: 'translateX(-50%)',
-        maxHeight: '80vh'
+        transform: 'translateX(-50%)',  // Centraliza horizontalmente
+        maxHeight: '80vh'  // Permite scroll se conteúdo for muito grande
     };
 };

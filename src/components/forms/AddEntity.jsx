@@ -1,10 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import Draggable from 'react-draggable';
-import { getModalStyle } from '../../../../components/modals/modalStyles';
-import ClienteForm from './ClienteForm';
-import AddCircle from '@mui/icons-material/AddCircle';
+import { getModalStyle } from '../modals/modalStyles';
+import EntityForm from './EntityForm';
 
-const AddCliente = ({ setClienteRefresh }) => {
+const AddEntity = ({ entityType, buttonLabel, fields, apiEndpoint, title, icon, setRefresh }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const nodeRef = useRef(null);
@@ -39,10 +38,15 @@ const AddCliente = ({ setClienteRefresh }) => {
                 <>
                     {isExpanded ? (
                         <div style={getModalStyle(isExpanded)}>
-                            <ClienteForm
+                            <EntityForm
+                                entityType={entityType}
+                                apiEndpoint={apiEndpoint}
+                                title={title}
+                                icon={icon}
+                                fields={fields}
                                 onSubmit={handleFormSubmit}
                                 onCancel={handleFormCancel}
-                                setClienteRefresh={setClienteRefresh}
+                                setRefresh={setRefresh}
                                 isExpanded={isExpanded}
                                 setIsExpanded={setIsExpanded}
                             />
@@ -50,10 +54,15 @@ const AddCliente = ({ setClienteRefresh }) => {
                     ) : (
                         <Draggable handle=".handle" nodeRef={nodeRef}>
                             <div ref={nodeRef} style={getModalStyle(isExpanded)}>
-                                <ClienteForm
+                                <EntityForm
+                                    entityType={entityType}
+                                    apiEndpoint={apiEndpoint}
+                                    title={title}
+                                    icon={icon}
+                                    fields={fields}
                                     onSubmit={handleFormSubmit}
                                     onCancel={handleFormCancel}
-                                    setClienteRefresh={setClienteRefresh}
+                                    setRefresh={setRefresh}
                                     isExpanded={isExpanded}
                                     setIsExpanded={setIsExpanded}
                                 />
@@ -65,14 +74,21 @@ const AddCliente = ({ setClienteRefresh }) => {
             <div className="flex flex-row">
                 <button
                     onClick={() => setShowForm(true)}
-                    className="flex bg-slate-800 border-slate-700 border flex-row gap-2 mt-5 ml-5 mb-5 transition duration-100 hover:bg-slate-700 rounded active:bg-slate-600 p-3 justify-center items-center"
+                    className="flex border flex-row gap-2 mt-5 ml-5 mb-5 transition duration-100 rounded p-3 justify-center items-center"
+                    style={{
+                        backgroundColor: 'var(--surface-2)',
+                        borderColor: 'var(--surface-3)',
+                        color: 'var(--praestitia-text)'
+                    }}
+                    onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'var(--surface-3)'}
+                    onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'var(--surface-2)'}
                 >
-                    <AddCircle sx={{ color: '#10B981' }} />
-                    <span className="text-slate-100">Adicionar Cliente</span>
+                    <span style={{ color: 'var(--praestitia-primary)', fontSize: '24px' }}>+</span>
+                    <span>{buttonLabel}</span>
                 </button>
             </div>
         </div>
     );
 };
 
-export default AddCliente;
+export default AddEntity;

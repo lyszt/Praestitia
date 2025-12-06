@@ -1,8 +1,10 @@
 import { getApiBaseUrl, setToken } from '../../utils/api'
 
+// Registra novo usuário e faz login automático
 async function sendRegisterData(username, password, email) {
     const payload = { username: username || '', password: password || '', email: email || '' }
     try {
+        // Envia requisição POST para endpoint de registro
         const res = await fetch(`${getApiBaseUrl()}/auth/register/`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -22,12 +24,14 @@ async function sendRegisterData(username, password, email) {
             return { success: false, status: res.status, message: String(serverMsg) }
         }
 
+        // Armazena token (login automático após registro)
         const token = data?.token || null
         if (token) {
             setToken(token)
         }
         return { success: true, token }
     } catch (err) {
+        // Captura falhas de conexão
         console.error('Erro de rede:', err)
         return { success: false, message: 'Estamos tendo dificuldades. Falha na conexão.' }
     }
