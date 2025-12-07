@@ -8,7 +8,6 @@ from .models import Cliente
 
 
 def authenticate_request(request):
-    """Helper function to authenticate requests using Bearer tokens."""
     auth_header = request.headers.get('Authorization')
 
     if not auth_header or not auth_header.startswith('Bearer '):
