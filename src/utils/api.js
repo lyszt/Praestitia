@@ -34,9 +34,10 @@ export async function authenticatedFetch(endpoint, options = {}) {
         ...(options.headers || {})
     }
 
-    // Adiciona Bearer token se usuário estiver autenticado
+    // Adiciona Token Knox se usuário estiver autenticado
+    // Knox espera o formato "Token <token>" ao invés de "Bearer <token>"
     if (token) {
-        headers['Authorization'] = `Bearer ${token}`
+        headers['Authorization'] = `Token ${token}`
     }
 
     // Constrói URL completa (suporta paths relativos e URLs absolutas)
