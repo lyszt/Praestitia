@@ -1,0 +1,17 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{Navigator}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{userPermissions}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{p}{]}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{hasAdminPermission}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{userPermissions}\PYG{p}{.}\PYG{n+nx}{includes}\PYG{p}{(}\PYG{l+m+mf}{1}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{  }\PYG{k}{return}\PYG{+w}{ }\PYG{p}{(}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}\PYG{c+cm}{/* Outros menus */}\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}\PYG{n+nx}{hasAdminPermission}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{p}{(}
+\PYG{+w}{      }\PYG{o}{\PYGZlt{}}\PYG{n+nx}{li}\PYG{o}{\PYGZgt{}}
+\PYG{+w}{        }\PYG{o}{\PYGZlt{}}\PYG{n+nx}{button}\PYG{+w}{ }\PYG{n+nx}{onClick}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{onNavigate}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}contas\PYGZsq{}}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{o}{\PYGZgt{}}
+\PYG{+w}{          }\PYG{n+nx}{Contas}
+\PYG{+w}{        }\PYG{o}{\PYGZlt{}}\PYG{err}{/}\PYG{err}{b}\PYG{err}{u}\PYG{err}{t}\PYG{err}{t}\PYG{err}{o}\PYG{err}{n}\PYG{err}{\PYGZgt{}}
+\PYG{+w}{      }\PYG{o}{\PYGZlt{}}\PYG{err}{/}\PYG{err}{l}\PYG{err}{i}\PYG{err}{\PYGZgt{}}
+\PYG{+w}{    }\PYG{p}{)}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{  }\PYG{p}{)}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+\end{MintedVerbatim}

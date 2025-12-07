@@ -1,0 +1,9 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{n}{urlpatterns} \PYG{o}{=} \PYG{p}{[}
+    \PYG{n}{path}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{admin/}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{admin}\PYG{o}{.}\PYG{n}{site}\PYG{o}{.}\PYG{n}{urls}\PYG{p}{)}\PYG{p}{,}
+    \PYG{n}{path}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{auth/}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{include}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{accounts.urls}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,}
+    \PYG{n}{path}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{api/leads/}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{include}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{leads.urls}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,}
+    \PYG{n}{path}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{api/clientes/}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{include}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{clientes.urls}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,}
+    \PYG{n}{path}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{api/concorrentes/}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{include}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{concorrentes.urls}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}\PYG{p}{,}
+\PYG{p}{]}
+\end{MintedVerbatim}

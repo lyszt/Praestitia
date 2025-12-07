@@ -1,0 +1,14 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{authenticate\PYGZus{}request}\PYG{p}{(}\PYG{n}{request}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{auth\PYGZus{}header} \PYG{o}{=} \PYG{n}{request}\PYG{o}{.}\PYG{n}{headers}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Authorization}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{auth\PYGZus{}header} \PYG{o+ow}{or} \PYG{o+ow}{not} \PYG{n}{auth\PYGZus{}header}\PYG{o}{.}\PYG{n}{startswith}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Token }\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{:}
+        \PYG{k}{return} \PYG{k+kc}{None}
+
+    \PYG{n}{token} \PYG{o}{=} \PYG{n}{auth\PYGZus{}header}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ }\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}
+    \PYG{n}{auth\PYGZus{}token} \PYG{o}{=} \PYG{n}{AuthToken}\PYG{o}{.}\PYG{n}{objects}\PYG{o}{.}\PYG{n}{filter}\PYG{p}{(}\PYG{n}{token\PYGZus{}key}\PYG{o}{=}\PYG{n}{token}\PYG{p}{[}\PYG{p}{:}\PYG{l+m+mi}{8}\PYG{p}{]}\PYG{p}{)}\PYG{o}{.}\PYG{n}{first}\PYG{p}{(}\PYG{p}{)}
+
+    \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{auth\PYGZus{}token} \PYG{o+ow}{or} \PYG{n}{auth\PYGZus{}token}\PYG{o}{.}\PYG{n}{expiry} \PYG{o}{\PYGZlt{}} \PYG{n}{timezone}\PYG{o}{.}\PYG{n}{now}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
+        \PYG{k}{return} \PYG{k+kc}{None}
+
+    \PYG{k}{return} \PYG{n}{auth\PYGZus{}token}\PYG{o}{.}\PYG{n}{user}
+\end{MintedVerbatim}

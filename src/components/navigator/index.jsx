@@ -1,6 +1,8 @@
 import "./Navigator.css";
 
-const Navigator = ({ children, currentPage, onNavigate }) => {
+const Navigator = ({ children, currentPage, onNavigate, userPermissions = [] }) => {
+  const hasAdminPermission = userPermissions.includes(1);
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -157,6 +159,35 @@ const Navigator = ({ children, currentPage, onNavigate }) => {
                 <span className="is-drawer-close:hidden">Concorrentes</span>
               </button>
             </li>
+
+            {/* Contas (Apenas para administradores) */}
+            {hasAdminPermission && (
+              <li>
+                <button
+                  className={`is-drawer-close:tooltip is-drawer-close:tooltip-right ${currentPage === 'contas' ? 'active' : ''}`}
+                  data-tip="Contas"
+                  onClick={() => onNavigate('contas')}
+                >
+                  {/* Ícone de contas/admin */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeWidth="2"
+                    fill="none"
+                    stroke="currentColor"
+                    className="my-1.5 inline-block size-4"
+                  >
+                    <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                    <path d="M17 11l2 2l-2 2"></path>
+                    <path d="M19 13h-7"></path>
+                  </svg>
+                  <span className="is-drawer-close:hidden">Contas</span>
+                </button>
+              </li>
+            )}
 
             {/* Sair */}
             <li >

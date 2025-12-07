@@ -1,0 +1,20 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{class}\PYG{+w}{ }\PYG{n+nc}{Lead}\PYG{p}{(}\PYG{n}{models}\PYG{o}{.}\PYG{n}{Model}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{nome} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{CharField}\PYG{p}{(}
+        \PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{200}\PYG{p}{,}
+        \PYG{n}{verbose\PYGZus{}name}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Nome do Lead}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+        \PYG{n}{help\PYGZus{}text}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Nome completo do lead}\PYG{l+s+s1}{\PYGZsq{}}
+    \PYG{p}{)}
+
+    \PYG{n}{email} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{EmailField}\PYG{p}{(}
+        \PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{254}\PYG{p}{,}
+        \PYG{n}{validators}\PYG{o}{=}\PYG{p}{[}\PYG{n}{EmailValidator}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]}\PYG{p}{,}
+        \PYG{n}{verbose\PYGZus{}name}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{E\PYGZhy{}mail}\PYG{l+s+s1}{\PYGZsq{}}
+    \PYG{p}{)}
+
+    \PYG{n}{status} \PYG{o}{=} \PYG{n}{models}\PYG{o}{.}\PYG{n}{CharField}\PYG{p}{(}
+        \PYG{n}{max\PYGZus{}length}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{,}
+        \PYG{n}{choices}\PYG{o}{=}\PYG{n}{STATUS\PYGZus{}CHOICES}\PYG{p}{,}
+        \PYG{n}{default}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{novo}\PYG{l+s+s1}{\PYGZsq{}}
+    \PYG{p}{)}
+\end{MintedVerbatim}

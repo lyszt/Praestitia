@@ -1,0 +1,9 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{class}\PYG{+w}{ }\PYG{n+nc}{Meta}\PYG{p}{:}
+    \PYG{n}{ordering} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}data\PYGZus{}cadastro}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}
+    \PYG{n}{indexes} \PYG{o}{=} \PYG{p}{[}
+        \PYG{n}{models}\PYG{o}{.}\PYG{n}{Index}\PYG{p}{(}\PYG{n}{fields}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{email}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,}
+        \PYG{n}{models}\PYG{o}{.}\PYG{n}{Index}\PYG{p}{(}\PYG{n}{fields}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{status}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,}
+        \PYG{n}{models}\PYG{o}{.}\PYG{n}{Index}\PYG{p}{(}\PYG{n}{fields}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}data\PYGZus{}cadastro}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,}
+    \PYG{p}{]}
+\end{MintedVerbatim}

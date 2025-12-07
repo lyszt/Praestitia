@@ -5,9 +5,11 @@ import DashboardStats from './stats'
 import Clientes from './clientes'
 import Concorrentes from './concorrentes'
 import Leads from './leads'
+import Contas from './contas'
 
 export default function Dashboard({ setAuth }) {
     const [currentPage, setCurrentPage] = useState('dashboard');
+    const [userPermissions, setUserPermissions] = useState([]);
 
     const handleNavigate = (page) => {
         if (page === 'logout') {
@@ -19,9 +21,10 @@ export default function Dashboard({ setAuth }) {
         setCurrentPage(page);
     };
 
-    // O projeto está usando Knox, que é uma 
+    // O projeto está usando Knox, que é uma
     // Ferramenta provida por biblioteca/pelo Django
     // E é mais seguro/mais fácil de configurar
+    useEffect(() => {
         const checkAuth = async () => {
             try {
                 const response = await authenticatedFetch('/auth/validate/', {
@@ -32,6 +35,9 @@ export default function Dashboard({ setAuth }) {
                 if (response.status === 401) {
                     removeToken()
                     setAuth(false)
+                } else if (response.ok) {
+                    const data = await response.json();
+                    setUserPermissions(data.permissions || []);
                 }
             } catch (error) {
                 console.error('Erro ao verificar autenticação:', error)
@@ -49,11 +55,12 @@ export default function Dashboard({ setAuth }) {
     }, [setAuth]);
 
     return (
-        <Navigator currentPage={currentPage} setAuth={setAuth} onNavigate={handleNavigate}>
+        <Navigator currentPage={currentPage} setAuth={setAuth} onNavigate={handleNavigate} userPermissions={userPermissions}>
             {currentPage === 'dashboard' && <DashboardStats />}
             {currentPage === 'cliente' && <Clientes />}
             {currentPage === 'lead' && <Leads />}
             {currentPage === 'concorrente' && <Concorrentes />}
+            {currentPage === 'contas' && <Contas />}
         </Navigator>
     );
 }

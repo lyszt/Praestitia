@@ -66,6 +66,20 @@ npm install
 npm run dev
 ```
 
+## Criando Usuário Administrador
+
+Para acessar a página de gerenciamento de contas, é necessário um usuário com permissões de administrador:
+
+```bash
+cd backend
+python manage.py create_admin
+```
+
+**Credenciais padrão:**
+- Username: `admin`
+- Password: `admin123`
+- Email: `admin@praestitia.com`
+
 ## Dados de Teste
 
 Para popular o banco com dados fictícios para teste:

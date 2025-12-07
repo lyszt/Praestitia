@@ -1,0 +1,12 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{class}\PYG{+w}{ }\PYG{n+nc}{UserManager}\PYG{p}{(}\PYG{n}{BaseUserManager}\PYG{p}{)}\PYG{p}{:}
+    \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{create\PYGZus{}user}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{username}\PYG{p}{,} \PYG{n}{email}\PYG{p}{,} \PYG{n}{password}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{extra\PYGZus{}fields}\PYG{p}{)}\PYG{p}{:}
+        \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{email}\PYG{p}{:}
+            \PYG{k}{raise} \PYG{n+ne}{ValueError}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Usuários devem ter um endereço de e\PYGZhy{}mail.}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+        \PYG{n}{email} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{normalize\PYGZus{}email}\PYG{p}{(}\PYG{n}{email}\PYG{p}{)}
+        \PYG{n}{user} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{model}\PYG{p}{(}\PYG{n}{username}\PYG{o}{=}\PYG{n}{username}\PYG{p}{,} \PYG{n}{email}\PYG{o}{=}\PYG{n}{email}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{extra\PYGZus{}fields}\PYG{p}{)}
+        \PYG{n}{user}\PYG{o}{.}\PYG{n}{set\PYGZus{}password}\PYG{p}{(}\PYG{n}{password}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} Hash automático com Argon2}
+        \PYG{n}{user}\PYG{o}{.}\PYG{n}{save}\PYG{p}{(}\PYG{n}{using}\PYG{o}{=}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}db}\PYG{p}{)}
+        \PYG{k}{return} \PYG{n}{user}
+\end{MintedVerbatim}

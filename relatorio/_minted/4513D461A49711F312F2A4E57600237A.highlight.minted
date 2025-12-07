@@ -1,0 +1,15 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kd}{function}\PYG{+w}{ }\PYG{n+nx}{App}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{p}{[}\PYG{n+nx}{isAuth}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{setAuth}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{useState}\PYG{p}{(}\PYG{p}{(}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{c+c1}{// Verifica se o token existe no localStorage ao inicializar}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{o}{!}\PYG{o}{!}\PYG{n+nx}{localStorage}\PYG{p}{.}\PYG{n+nx}{getItem}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}token\PYGZus{}acesso\PYGZsq{}}\PYG{p}{)}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{  }\PYG{k}{return}\PYG{+w}{ }\PYG{p}{(}
+\PYG{+w}{    }\PYG{o}{\PYGZlt{}}\PYG{n+nx}{ThemeProvider}\PYG{+w}{ }\PYG{n+nx}{theme}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n+nx}{theme}\PYG{p}{\PYGZcb{}}\PYG{o}{\PYGZgt{}}
+\PYG{+w}{      }\PYG{p}{\PYGZob{}}\PYG{o}{!}\PYG{n+nx}{isAuth}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{n+nx}{AuthenticationPage}\PYG{+w}{ }\PYG{n+nx}{setAuth}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n+nx}{setAuth}\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{o}{/}\PYG{o}{\PYGZgt{}}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{      }\PYG{p}{\PYGZob{}}\PYG{n+nx}{isAuth}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{n+nx}{Dashboard}\PYG{+w}{ }\PYG{n+nx}{setAuth}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n+nx}{setAuth}\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{o}{/}\PYG{o}{\PYGZgt{}}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{o}{\PYGZlt{}}\PYG{err}{/}\PYG{err}{T}\PYG{err}{h}\PYG{err}{e}\PYG{err}{m}\PYG{err}{e}\PYG{err}{P}\PYG{err}{r}\PYG{err}{o}\PYG{err}{v}\PYG{err}{i}\PYG{err}{d}\PYG{err}{e}\PYG{err}{r}\PYG{err}{\PYGZgt{}}
+\PYG{+w}{  }\PYG{p}{)}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}

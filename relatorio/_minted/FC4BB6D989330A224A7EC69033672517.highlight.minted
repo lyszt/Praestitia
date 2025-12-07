@@ -1,0 +1,23 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k}{export}\PYG{+w}{ }\PYG{k}{default}\PYG{+w}{ }\PYG{k+kd}{function}\PYG{+w}{ }\PYG{n+nx}{Dashboard}\PYG{p}{(}\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{setAuth}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{p}{[}\PYG{n+nx}{currentPage}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{setCurrentPage}\PYG{p}{]}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{useState}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}dashboard\PYGZsq{}}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{handleNavigate}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{page}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n+nx}{page}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}logout\PYGZsq{}}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{            }\PYG{n+nx}{removeToken}\PYG{p}{(}\PYG{p}{)}
+\PYG{+w}{            }\PYG{n+nx}{setAuth}\PYG{p}{(}\PYG{k+kc}{false}\PYG{p}{)}
+\PYG{+w}{            }\PYG{k}{return}
+\PYG{+w}{        }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{n+nx}{setCurrentPage}\PYG{p}{(}\PYG{n+nx}{page}\PYG{p}{)}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{p}{(}
+\PYG{+w}{        }\PYG{o}{\PYGZlt{}}\PYG{n+nx}{Navigator}\PYG{+w}{ }\PYG{n+nx}{onNavigate}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{n+nx}{handleNavigate}\PYG{p}{\PYGZcb{}}\PYG{o}{\PYGZgt{}}
+\PYG{+w}{            }\PYG{p}{\PYGZob{}}\PYG{n+nx}{currentPage}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}dashboard\PYGZsq{}}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{n+nx}{DashboardStats}\PYG{+w}{ }\PYG{o}{/}\PYG{o}{\PYGZgt{}}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{p}{\PYGZob{}}\PYG{n+nx}{currentPage}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}cliente\PYGZsq{}}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{n+nx}{Clientes}\PYG{+w}{ }\PYG{o}{/}\PYG{o}{\PYGZgt{}}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{p}{\PYGZob{}}\PYG{n+nx}{currentPage}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}lead\PYGZsq{}}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{n+nx}{Leads}\PYG{+w}{ }\PYG{o}{/}\PYG{o}{\PYGZgt{}}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{            }\PYG{p}{\PYGZob{}}\PYG{n+nx}{currentPage}\PYG{+w}{ }\PYG{o}{===}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}concorrente\PYGZsq{}}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{n+nx}{Concorrentes}\PYG{+w}{ }\PYG{o}{/}\PYG{o}{\PYGZgt{}}\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{o}{\PYGZlt{}}\PYG{err}{/}\PYG{err}{N}\PYG{err}{a}\PYG{err}{v}\PYG{err}{i}\PYG{err}{g}\PYG{err}{a}\PYG{err}{t}\PYG{err}{o}\PYG{err}{r}\PYG{err}{\PYGZgt{}}
+\PYG{+w}{    }\PYG{p}{)}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{MintedVerbatim}

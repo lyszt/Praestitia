@@ -1,0 +1,29 @@
+\babel@toc {portuguese}{}\relax 
+\contentsline {section}{\numberline {1}Introdução}{2}{}%
+\contentsline {subsection}{\numberline {1.1}Comanda do trabalho}{2}{}%
+\contentsline {subsection}{\numberline {1.2}Desafios Enfrentados}{2}{}%
+\contentsline {section}{\numberline {2}Metodologia}{3}{}%
+\contentsline {subsection}{\numberline {2.1}Stack utilizada}{3}{}%
+\contentsline {subsection}{\numberline {2.2}Estrutura de arquivos}{4}{}%
+\contentsline {subsection}{\numberline {2.3}Especificações e Instruções de Instalação}{5}{}%
+\contentsline {subsubsection}{\numberline {2.3.1}Configuração do Backend}{6}{}%
+\contentsline {subsubsection}{\numberline {2.3.2}Configuração do Frontend}{6}{}%
+\contentsline {subsubsection}{\numberline {2.3.3}Gerenciamento do Banco de Dados}{7}{}%
+\contentsline {section}{\numberline {3}Funcionamento do Código}{8}{}%
+\contentsline {subsection}{\numberline {3.1}Servidor Django}{8}{}%
+\contentsline {subsubsection}{\numberline {3.1.1}Estrutura de URLs e Roteamento}{8}{}%
+\contentsline {subsubsection}{\numberline {3.1.2}Modelos de Dados}{9}{}%
+\contentsline {subsubsection}{\numberline {3.1.3}Sistema de Autenticação}{10}{}%
+\contentsline {subsubsection}{\numberline {3.1.4}Views e Processamento de Requisições}{12}{}%
+\contentsline {subsection}{\numberline {3.2}Frontend React}{14}{}%
+\contentsline {subsubsection}{\numberline {3.2.1}Estrutura da Aplicação e Fluxo de Autenticação}{14}{}%
+\contentsline {subsubsection}{\numberline {3.2.2}Arquitetura do Dashboard}{15}{}%
+\contentsline {subsubsection}{\numberline {3.2.3}Verificação Automática de Autenticação}{16}{}%
+\contentsline {subsubsection}{\numberline {3.2.4}Componentes Reutilizáveis e Comunicação com API}{17}{}%
+\contentsline {subsubsection}{\numberline {3.2.5}Autenticação Knox nas Views}{18}{}%
+\contentsline {subsection}{\numberline {3.3}Entidades do Sistema}{20}{}%
+\contentsline {subsubsection}{\numberline {3.3.1}Leads}{20}{}%
+\contentsline {subsubsection}{\numberline {3.3.2}Clientes}{21}{}%
+\contentsline {subsubsection}{\numberline {3.3.3}Concorrentes}{22}{}%
+\contentsline {subsubsection}{\numberline {3.3.4}Contas (Usuários)}{23}{}%
+\contentsline {section}{\numberline {4}Conclusão}{24}{}%
