@@ -92,4 +92,4 @@ python manage.py gerar_dados_teste --leads 20 --clientes 10
 ## Tecnologias
 
 - **Frontend**: React, Vite, Tailwind CSS, Material-UI
-- **Backend**: Django 5.2, Django Knox, SQLite
+- **Backend**: Django, Django Knox, SQLite
